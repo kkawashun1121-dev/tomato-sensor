@@ -7,6 +7,8 @@ from .config import settings
 from .database import Base, engine
 from . import models  # テーブル作成のためにimport
 
+from .routers import readings
+
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
@@ -19,6 +21,8 @@ app = FastAPI(
     version="0.2.0",
     lifespan=lifespan,
 )
+
+app.include_router(readings.router)
 
 app.add_middleware(
     CORSMiddleware,
