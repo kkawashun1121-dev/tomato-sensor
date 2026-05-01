@@ -1,0 +1,26 @@
+# Python が勝手に作るやつ
+__pycache__/
+*.pyc
+.venv/
+.pytest_cache/
+
+# Node.js / React が作るやつ (重い!)
+node_modules/
+dist/
+
+# 秘密情報 (絶対に GitHub に上げない)
+.env
+firmware/config.h
+
+# DB / 画像 (Docker やアップロードで作られる)
+*.sqlite
+*.sqlite3
+data/*.db
+data/images/*
+
+# エディタが作るやつ
+.vscode/
+.idea/
+
+# Mac の謎ファイル
+.DS_Store
