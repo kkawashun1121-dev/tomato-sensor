@@ -85,15 +85,29 @@ tomato-sensor/
 ##　進め方
 
 [フェーズ1] 土台 (frontend を空のまま、Postgres だけ動かす)
-  1. README.md
+  1. README.md これのこと
   2. .gitignore
+  githubでは公開したくないものを書く
   3. docker-compose.yml (db だけ)
   → 動作確認: docker compose up で Postgres が起動するか
   → コミット🌱
 
 [フェーズ2] backend を最小で動かす
   4. backend/requirements.txt
+    pythonで使うライブラリーを書く
+    fastapi → API フレームワーク本体
+    uvicorn → FastAPI を動かすサーバー
+    sqlalchemy → DB操作 (ORM)
+    psycopg → PostgreSQL に繋ぐドライバ
+    pydantic → データの形チェック
+    pydantic-settings → .env からの設定読み込み
+    python-multipart → 画像アップロード用 (後で使う)
   5. backend/Dockerfile
+  FROM python:3.12-slim → Python 3.12 入りの軽量イメージから始める
+    COPY requirements.txt . → ホストの requirements.txt をコンテナにコピー
+    RUN pip install ... → ライブラリをインストール
+    COPY app ./app → 自分のコード (まだ空) をコピー
+    CMD [...] → コンテナ起動時に走るコマンド (uvicorn で main.py を起動)
   6. backend/app/__init__.py (空)
   7. backend/app/config.py
   8. backend/app/database.py
