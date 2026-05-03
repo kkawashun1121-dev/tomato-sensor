@@ -26,3 +26,5 @@ class ReadingOut(BaseModel):
     moisture_pct: float
     recorded_at: datetime
     model_config = ConfigDict(from_attributes=True)
+    
+    # このファイルがおかしいです
