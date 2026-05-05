@@ -1,30 +1,33 @@
 """Pydantic スキーマ (API入出力)"""
-from datetime import datetime
-from typing import Optional
-from pydantic import BaseModel, Field, ConfigDict
+from datetime import datetime,timedelta
+from sqlalchemy import select
+from sqlalchemy.orm import Session
+from . import models
+  
+def list_readings(db: Session, limit: int = 600, hours: int | None = None):
+    """測定値の一覧を新しい順で取得"""
+    stmt = select(models.Reading)
 
+    if hours is not None:
+        since = datetime.utcnow() - timedelta(hours=hours)
+        stmt = stmt.where(models.Reading.recorded_at >= since)
 
-class SensorSample(BaseModel):
-    """センサー1個分の値"""
-    sensor_index: int = Field(..., ge=0, le=15)
-    raw: Optional[int] = Field(None, ge=0, le=4095)
-    moisture_pct: float = Field(..., ge=0, le=100)
+    stmt = stmt.order_by(models.Reading.recorded_at.desc()).limit(limit)
+    return db.execute(stmt).scalars().all()
 
-
-class ReadingBatchCreate(BaseModel):
-    """ESP32 からの一括投稿"""
-    device_id: str = Field(..., max_length=64)
-    readings: list[SensorSample] = Field(..., min_length=1, max_length=16)
-
-
-class ReadingOut(BaseModel):
-    """API レスポンス用"""
-    id: int
-    device_id: str
-    sensor_index: int
-    raw: Optional[int]
-    moisture_pct: float
-    recorded_at: datetime
-    model_config = ConfigDict(from_attributes=True)
-    
-    # このファイルがおかしいです
+def create_reading_batch(db: Session, payload):
+    """ESP32 からの一括測定値を保存"""
+    rows = []
+    for sample in payload.readings:
+        row = models.Reading(
+            device_id=payload.device_id,
+            sensor_index=sample.sensor_index,
+            raw=sample.raw,
+            moisture_pct=sample.moisture_pct,
+        )
+        db.add(row)
+        rows.append(row)
+    db.commit()
+    for row in rows:
+        db.refresh(row)
+    return rows
