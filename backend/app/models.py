@@ -79,3 +79,23 @@ class Fruit(Base):
     created_at: Mapped[datetime] = mapped_column(
         DateTime(timezone=True), nullable=False, server_default=func.now()
     )
+    
+class Image(Base):
+    __tablename__ = "images"
+    id: Mapped[int] = mapped_column(Integer, primary_key=True, autoincrement=True)
+    plant_id: Mapped[int | None] = mapped_column(
+        ForeignKey("plants.id", ondelete="SET NULL"), nullable=True, index=True
+    )
+    fruit_id: Mapped[int | None] = mapped_column(
+        ForeignKey("fruits.id", ondelete="SET NULL"), nullable=True, index=True
+    )
+    filename: Mapped[str] = mapped_column(String(256), nullable=False)
+    original_name: Mapped[str | None] = mapped_column(String(256), nullable=True)
+    content_type: Mapped[str | None] = mapped_column(String(64), nullable=True)
+    description: Mapped[str | None] = mapped_column(String(256), nullable=True)
+    taken_at: Mapped[datetime | None] = mapped_column(
+        DateTime(timezone=True), nullable=True
+    )
+    uploaded_at: Mapped[datetime] = mapped_column(
+        DateTime(timezone=True), nullable=False, server_default=func.now()
+    )

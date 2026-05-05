@@ -1,4 +1,6 @@
 """FastAPI のエントリーポイント"""
+from fastapi.staticfiles import StaticFiles
+from .routers import readings, environments, plants, waterings, harvests, fruits, images
 from contextlib import asynccontextmanager
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
@@ -6,8 +8,6 @@ from fastapi.middleware.cors import CORSMiddleware
 from .config import settings
 from .database import Base, engine
 from . import models  # テーブル作成のためにimport
-
-from .routers import readings, environments, plants, waterings, harvests, fruits
 
 
 @asynccontextmanager
@@ -28,6 +28,13 @@ app.include_router(plants.router)
 app.include_router(waterings.router)
 app.include_router(harvests.router)
 app.include_router(fruits.router)
+app.include_router(images.router)
+
+app.mount(
+    "/static/images",
+    StaticFiles(directory=settings.image_dir),
+    name="images",
+)
 
 app.add_middleware(
     CORSMiddleware,

@@ -145,3 +145,14 @@ class SunlightSinceFlowering(BaseModel):
     total_sunlight_hours: float
     days: int
 
+class ImageOut(BaseModel):
+    id: int
+    plant_id: Optional[int]
+    fruit_id: Optional[int]
+    filename: str
+    original_name: Optional[str]
+    content_type: Optional[str]
+    description: Optional[str]
+    taken_at: Optional[datetime]
+    uploaded_at: datetime
+    model_config = ConfigDict(from_attributes=True)

@@ -12,8 +12,8 @@ class Settings(BaseSettings):
     database_url: str = Field(
         default="postgresql+psycopg://tomato:tomato@localhost:5433/tomato"
     )
-    # 文字列で受け取って、後で split する (pydantic-settings の List 自動パース回避)
     cors_origins: str = Field(default="http://localhost:5173")
+    image_dir: str = "./data/images"
 
     @property
     def cors_origins_list(self) -> list[str]:

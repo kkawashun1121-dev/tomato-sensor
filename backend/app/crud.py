@@ -179,3 +179,43 @@ def sunlight_since_flowering(db: Session, fruit_id: int):
         "total_sunlight_hours": round(total, 2),
         "days": days,
     }
+    
+def list_images(
+    db: Session,
+    plant_id: int | None = None,
+    fruit_id: int | None = None,
+    limit: int = 200,
+):
+    stmt = select(models.Image)
+    if plant_id is not None:
+        stmt = stmt.where(models.Image.plant_id == plant_id)
+    if fruit_id is not None:
+        stmt = stmt.where(models.Image.fruit_id == fruit_id)
+    stmt = stmt.order_by(models.Image.uploaded_at.desc()).limit(limit)
+    return db.execute(stmt).scalars().all()
+
+
+def create_image(
+    db: Session,
+    *,
+    filename: str,
+    original_name: str | None,
+    content_type: str | None,
+    plant_id: int | None = None,
+    fruit_id: int | None = None,
+    description: str | None = None,
+    taken_at: datetime | None = None,
+):
+    row = models.Image(
+        filename=filename,
+        original_name=original_name,
+        content_type=content_type,
+        plant_id=plant_id,
+        fruit_id=fruit_id,
+        description=description,
+        taken_at=taken_at,
+    )
+    db.add(row)
+    db.commit()
+    db.refresh(row)
+    return row
