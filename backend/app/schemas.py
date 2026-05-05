@@ -1,5 +1,6 @@
 """Pydantic スキーマ (API入出力)"""
 from datetime import datetime
+from datetime import date
 from typing import Optional
 from pydantic import BaseModel, Field, ConfigDict
 
@@ -47,4 +48,42 @@ class EnvironmentOut(BaseModel):
     sunlight_hours: Optional[float]
     note: Optional[str]
     model_config = ConfigDict(from_attributes=True)
+
+
+class PlantCreate(BaseModel):
+    variety: str = Field(..., max_length=64)
+    planted_date: date
+    note: Optional[str] = Field(None, max_length=256)
+
+
+class PlantUpdate(BaseModel):
+    """部分更新用 (PATCH)。全フィールド省略可"""
+    variety: Optional[str] = Field(None, max_length=64)
+    planted_date: Optional[date] = None
+    note: Optional[str] = Field(None, max_length=256)
+
+
+class PlantOut(BaseModel):
+    id: int
+    variety: str
+    planted_date: date
+    note: Optional[str]
+    created_at: datetime
+    model_config = ConfigDict(from_attributes=True)
     
+class WateringCreate(BaseModel):
+    plant_id: int = Field(..., ge=1)
+    watered_at: Optional[datetime] = None
+    amount_ml: Optional[int] = Field(None, ge=0)
+    note: Optional[str] = Field(None, max_length=256)
+
+
+class WateringOut(BaseModel):
+    id: int
+    plant_id: int
+    watered_at: datetime
+    amount_ml: Optional[int]
+    note: Optional[str]
+    model_config = ConfigDict(from_attributes=True)
+
+

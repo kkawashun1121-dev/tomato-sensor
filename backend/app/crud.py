@@ -40,3 +40,55 @@ def create_environment(db: Session, payload):
     db.commit()
     db.refresh(row)
     return row
+
+def list_plants(db: Session):
+    """株の一覧 (新しい順)"""
+    stmt = select(models.Plant).order_by(models.Plant.id.desc())
+    return db.execute(stmt).scalars().all()
+
+
+def get_plant(db: Session, plant_id: int):
+    """1 株を取得 (無ければ None)"""
+    return db.get(models.Plant, plant_id)
+
+
+def create_plant(db: Session, payload):
+    """株を 1 件追加"""
+    row = models.Plant(**payload.model_dump())
+    db.add(row)
+    db.commit()
+    db.refresh(row)
+    return row
+
+
+def update_plant(db: Session, plant_id: int, payload):
+    """株を部分更新 (送られたフィールドだけ更新)"""
+    row = db.get(models.Plant, plant_id)
+    if row is None:
+        return None
+    for key, value in payload.model_dump(exclude_unset=True).items():
+        setattr(row, key, value)
+    db.commit()
+    db.refresh(row)
+    return row
+
+def list_waterings(db: Session, plant_id: int | None = None, limit: int = 200):
+    """水やり履歴 (新しい順、plant_id で絞り込み可能)"""
+    stmt = select(models.Watering)
+    if plant_id is not None:
+        stmt = stmt.where(models.Watering.plant_id == plant_id)
+    stmt = stmt.order_by(models.Watering.watered_at.desc()).limit(limit)
+    return db.execute(stmt).scalars().all()
+
+
+def create_watering(db: Session, payload):
+    """水やりを 1 件追加 (Plant の存在チェック付き)"""
+    plant = db.get(models.Plant, payload.plant_id)
+    if plant is None:
+        return None
+    data = payload.model_dump(exclude_none=True)
+    row = models.Watering(**data)
+    db.add(row)
+    db.commit()
+    db.refresh(row)
+    return row
