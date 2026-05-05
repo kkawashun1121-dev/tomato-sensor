@@ -52,3 +52,16 @@ class Plant(Base):
         DateTime(timezone=True), nullable=False, server_default=func.now()
     )
 
+class Harvest(Base):
+    __tablename__ = "harvests"
+    id: Mapped[int] = mapped_column(Integer, primary_key=True, autoincrement=True)
+    plant_id: Mapped[int] = mapped_column(
+        ForeignKey("plants.id", ondelete="CASCADE"), nullable=False, index=True
+    )
+    harvested_on: Mapped[Date] = mapped_column(Date, nullable=False)
+    count: Mapped[int] = mapped_column(Integer, nullable=False, default=1)
+    brix: Mapped[float | None] = mapped_column(Float, nullable=True)
+    note: Mapped[str | None] = mapped_column(String(256), nullable=True)
+    
+    
+    

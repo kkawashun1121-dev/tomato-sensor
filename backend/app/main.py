@@ -7,7 +7,7 @@ from .config import settings
 from .database import Base, engine
 from . import models  # テーブル作成のためにimport
 
-from .routers import readings, environments, plants, waterings
+from .routers import readings, environments, plants, waterings, harvests
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     Base.metadata.create_all(bind=engine)
@@ -24,6 +24,7 @@ app.include_router(readings.router)
 app.include_router(environments.router)  # ← 追加
 app.include_router(plants.router)
 app.include_router(waterings.router)
+app.include_router(harvests.router)
 
 app.add_middleware(
     CORSMiddleware,

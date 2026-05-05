@@ -92,3 +92,23 @@ def create_watering(db: Session, payload):
     db.commit()
     db.refresh(row)
     return row
+
+def list_harvests(db: Session, plant_id: int | None = None, limit: int = 200):
+    """収穫履歴 (新しい順、plant_id で絞り込み可能)"""
+    stmt = select(models.Harvest)
+    if plant_id is not None:
+        stmt = stmt.where(models.Harvest.plant_id == plant_id)
+    stmt = stmt.order_by(models.Harvest.harvested_on.desc()).limit(limit)
+    return db.execute(stmt).scalars().all()
+
+
+def create_harvest(db: Session, payload):
+    """収穫を 1 件追加 (Plant の存在チェック付き)"""
+    plant = db.get(models.Plant, payload.plant_id)
+    if plant is None:
+        return None
+    row = models.Harvest(**payload.model_dump(exclude_none=True))
+    db.add(row)
+    db.commit()
+    db.refresh(row)
+    return row

@@ -87,3 +87,21 @@ class WateringOut(BaseModel):
     model_config = ConfigDict(from_attributes=True)
 
 
+class HarvestCreate(BaseModel):
+    plant_id: int = Field(..., ge=1)
+    harvested_on: date
+    count: int = Field(1, ge=1)
+    brix: Optional[float] = Field(None, ge=0)
+    note: Optional[str] = Field(None, max_length=256)
+
+
+class HarvestOut(BaseModel):
+    id: int
+    plant_id: int
+    harvested_on: date
+    count: int
+    brix: Optional[float]
+    note: Optional[str]
+    model_config = ConfigDict(from_attributes=True)
+
+
