@@ -24,7 +24,7 @@ services:
         condition: service_healthy
     environment:
       - DATABASE_URL=postgresql+psycopg://tomato:tomato@db:5432/tomato
-      - CORS_ORIGINS=http://localhost:5173
+      - CORS_ORIGINS=http://localhost:5173,http://localhost:5174
       - IMAGE_DIR=/app/data/images
     volumes:
       - ./backend/app:/app/app
