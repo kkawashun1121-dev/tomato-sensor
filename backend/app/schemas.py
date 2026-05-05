@@ -26,3 +26,25 @@ class ReadingOut(BaseModel):
     moisture_pct: float
     recorded_at: datetime
     model_config = ConfigDict(from_attributes=True)
+    
+class EnvironmentCreate(BaseModel):
+    """環境データ登録用 (手入力 or 外部API取得)"""
+    recorded_at: Optional[datetime] = None
+    weather: Optional[str] = Field(None, max_length=32)
+    temperature_c: Optional[float] = None
+    humidity_pct: Optional[float] = Field(None, ge=0, le=100)
+    sunlight_hours: Optional[float] = Field(None, ge=0)
+    note: Optional[str] = Field(None, max_length=256)
+
+
+class EnvironmentOut(BaseModel):
+    """環境データ応答用"""
+    id: int
+    recorded_at: datetime
+    weather: Optional[str]
+    temperature_c: Optional[float]
+    humidity_pct: Optional[float]
+    sunlight_hours: Optional[float]
+    note: Optional[str]
+    model_config = ConfigDict(from_attributes=True)
+    

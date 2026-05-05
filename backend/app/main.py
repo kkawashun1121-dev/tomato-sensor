@@ -9,6 +9,7 @@ from . import models  # テーブル作成のためにimport
 
 from .routers import readings
 
+from .routers import readings, environments  # ← environments を追加
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
@@ -23,6 +24,7 @@ app = FastAPI(
 )
 
 app.include_router(readings.router)
+app.include_router(environments.router)  # ← 追加
 
 app.add_middleware(
     CORSMiddleware,

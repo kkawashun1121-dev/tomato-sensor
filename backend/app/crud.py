@@ -31,3 +31,12 @@ def create_reading_batch(db: Session, payload):
     for row in rows:
         db.refresh(row)
     return rows
+
+def create_environment(db: Session, payload):
+    """環境データを 1 件追加"""
+    data = payload.model_dump(exclude_none=True)
+    row = models.EnvironmentReading(**data)
+    db.add(row)
+    db.commit()
+    db.refresh(row)
+    return row
