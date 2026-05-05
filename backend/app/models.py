@@ -16,6 +16,8 @@ class Watering(Base):
     )
     amount_ml: Mapped[int | None] = mapped_column(Integer, nullable=True)
     note: Mapped[str | None] = mapped_column(String(256), nullable=True)
+    
+    
 
 class Reading(Base):
     __tablename__ = "readings"
@@ -50,14 +52,3 @@ class Plant(Base):
         DateTime(timezone=True), nullable=False, server_default=func.now()
     )
 
-class Watering(Base):
-    __tablename__ = "waterings"
-    id: Mapped[int] = mapped_column(Integer, primary_key=True, autoincrement=True)
-    plant_id: Mapped[int] = mapped_column(
-        ForeignKey("plants.id", ondelete="CASCADE"), nullable=False, index=True
-    )
-    watered_at: Mapped[datetime] = mapped_column(
-        DateTime(timezone=True), nullable=False, server_default=func.now()
-    )
-    amount_ml: Mapped[int | None] = mapped_column(Integer, nullable=True)
-    note: Mapped[str | None] = mapped_column(String(256), nullable=True)
