@@ -3,6 +3,8 @@ from datetime import datetime,timedelta
 from sqlalchemy import select
 from sqlalchemy.orm import Session
 from . import models
+
+from datetime import date as _date
   
 def list_readings(db: Session, limit: int = 600, hours: int | None = None):
     """測定値の一覧を新しい順で取得"""
@@ -112,3 +114,68 @@ def create_harvest(db: Session, payload):
     db.commit()
     db.refresh(row)
     return row
+
+
+def list_fruits(db: Session, plant_id: int | None = None):
+    stmt = select(models.Fruit)
+    if plant_id is not None:
+        stmt = stmt.where(models.Fruit.plant_id == plant_id)
+    stmt = stmt.order_by(models.Fruit.id.desc())
+    return db.execute(stmt).scalars().all()
+
+
+def get_fruit(db: Session, fruit_id: int):
+    return db.get(models.Fruit, fruit_id)
+
+
+def create_fruit(db: Session, payload):
+    plant = db.get(models.Plant, payload.plant_id)
+    if plant is None:
+        return None
+    row = models.Fruit(**payload.model_dump(exclude_none=True))
+    db.add(row)
+    db.commit()
+    db.refresh(row)
+    return row
+
+
+def update_fruit(db: Session, fruit_id: int, payload):
+    row = db.get(models.Fruit, fruit_id)
+    if row is None:
+        return None
+    for key, value in payload.model_dump(exclude_unset=True).items():
+        setattr(row, key, value)
+    db.commit()
+    db.refresh(row)
+    return row
+
+
+def sunlight_since_flowering(db: Session, fruit_id: int):
+    """花が咲いてからの累積日照時間を計算"""
+    fruit = db.get(models.Fruit, fruit_id)
+    if fruit is None or fruit.flowering_date is None:
+        return None
+
+    # 終端日: 収穫済みなら収穫日、未収穫なら今日
+    until = fruit.harvested_on or _date.today()
+
+    # 開花日 0:00 から終端日 23:59 までの環境データの sunlight_hours を合計
+    start = datetime.combine(fruit.flowering_date, datetime.min.time())
+    end = datetime.combine(until, datetime.max.time())
+
+    stmt = select(models.EnvironmentReading).where(
+        models.EnvironmentReading.recorded_at >= start,
+        models.EnvironmentReading.recorded_at <= end,
+        models.EnvironmentReading.sunlight_hours.is_not(None),
+    )
+    rows = db.execute(stmt).scalars().all()
+    total = sum(r.sunlight_hours for r in rows)
+    days = (until - fruit.flowering_date).days + 1
+
+    return {
+        "fruit_id": fruit.id,
+        "flowering_date": fruit.flowering_date,
+        "until": until,
+        "total_sunlight_hours": round(total, 2),
+        "days": days,
+    }

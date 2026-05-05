@@ -104,4 +104,44 @@ class HarvestOut(BaseModel):
     note: Optional[str]
     model_config = ConfigDict(from_attributes=True)
 
+class FruitCreate(BaseModel):
+    plant_id: int = Field(..., ge=1)
+    flowering_date: Optional[date] = None
+    harvested_on: Optional[date] = None
+    fruit_height_cm: Optional[float] = Field(None, ge=0)
+    final_plant_height_cm: Optional[float] = Field(None, ge=0)
+    brix: Optional[float] = Field(None, ge=0)
+    note: Optional[str] = Field(None, max_length=256)
+
+
+class FruitUpdate(BaseModel):
+    """部分更新用 (PATCH)。plant_id は変更不可"""
+    flowering_date: Optional[date] = None
+    harvested_on: Optional[date] = None
+    fruit_height_cm: Optional[float] = Field(None, ge=0)
+    final_plant_height_cm: Optional[float] = Field(None, ge=0)
+    brix: Optional[float] = Field(None, ge=0)
+    note: Optional[str] = Field(None, max_length=256)
+
+
+class FruitOut(BaseModel):
+    id: int
+    plant_id: int
+    flowering_date: Optional[date]
+    harvested_on: Optional[date]
+    fruit_height_cm: Optional[float]
+    final_plant_height_cm: Optional[float]
+    brix: Optional[float]
+    note: Optional[str]
+    created_at: datetime
+    model_config = ConfigDict(from_attributes=True)
+
+
+class SunlightSinceFlowering(BaseModel):
+    """花が咲いてからの累積日照時間"""
+    fruit_id: int
+    flowering_date: date
+    until: date
+    total_sunlight_hours: float
+    days: int
 
