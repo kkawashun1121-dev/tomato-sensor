@@ -3,6 +3,8 @@ import { useReadings } from './hooks/useReadings'
 import MoistureChart from './components/MoistureChart'
 import SummaryCards from './components/SummaryCards'  // ← 追加
 import './App.css'
+import EnvironmentPanel from './components/EnvironmentPanel'  
+
 
 const PERIODS = [
   { label: '24h', hours: 24 },
@@ -20,6 +22,7 @@ function App() {
 
       {/* サマリーカードを追加 */}
       <SummaryCards readings={readings} />
+      <EnvironmentPanel />
 
       <div style={{ marginBottom: 16 }}>
         {PERIODS.map((p) => (
