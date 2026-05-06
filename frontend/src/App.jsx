@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { useReadings } from './hooks/useReadings'
 import MoistureChart from './components/MoistureChart'
+import SummaryCards from './components/SummaryCards'  // ← 追加
 import './App.css'
 
 const PERIODS = [
@@ -16,6 +17,9 @@ function App() {
   return (
     <div style={{ padding: 20, fontFamily: 'sans-serif', maxWidth: 1100, margin: '0 auto' }}>
       <h1>🍅 トマト栽培モニター</h1>
+
+      {/* サマリーカードを追加 */}
+      <SummaryCards readings={readings} />
 
       <div style={{ marginBottom: 16 }}>
         {PERIODS.map((p) => (
