@@ -63,3 +63,15 @@ async def upload_image(
         taken_at=taken_at,
     )
     return row
+
+@router.delete("/{image_id}", status_code=204)
+def delete_image(image_id: int, db: Session = Depends(get_db)):
+    ok, filename = crud.delete_image(db, image_id)
+    if not ok:
+        raise HTTPException(status_code=404, detail="Image not found")
+    # ディスク上のファイルも削除
+    if filename:
+        path = IMAGE_DIR / filename
+        if path.exists():
+            path.unlink()
+    return None

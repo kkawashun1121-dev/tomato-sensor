@@ -1,6 +1,6 @@
 """ESP32 からのセンサーデータと取得API"""
 from typing import Optional
-from fastapi import APIRouter, Depends, Query, status
+from fastapi import APIRouter, Depends, Query, status,HTTPException
 from sqlalchemy.orm import Session
 
 from .. import crud, schemas
@@ -24,3 +24,9 @@ def list_readings(
 ):
     """履歴取得"""
     return crud.list_readings(db, limit=limit, hours=hours)
+
+@router.delete("/{reading_id}", status_code=204)
+def delete_reading(reading_id: int, db: Session = Depends(get_db)):
+    if not crud.delete_reading(db, reading_id):
+        raise HTTPException(status_code=404, detail="Reading not found")
+    return None

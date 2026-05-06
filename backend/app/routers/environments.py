@@ -17,3 +17,9 @@ def create_environment(
     payload: schemas.EnvironmentCreate, db: Session = Depends(get_db)
 ):
     return crud.create_environment(db, payload)
+
+@router.delete("/{environment_id}", status_code=204)
+def delete_environment(environment_id: int, db: Session = Depends(get_db)):
+    if not crud.delete_environment(db, environment_id):
+        raise HTTPException(status_code=404, detail="Environment not found")
+    return None

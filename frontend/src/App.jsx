@@ -5,7 +5,7 @@ import SummaryCards from './components/SummaryCards'
 import './App.css'
 import EnvironmentPanel from './components/EnvironmentPanel'  
 import PlantManager from './components/PlantManager' 
-
+import ImageGallery from './components/ImageGallery'
 
 const PERIODS = [
   { label: '24h', hours: 24 },
@@ -25,6 +25,7 @@ function App() {
       <SummaryCards readings={readings} />
       <EnvironmentPanel />
       <PlantManager />
+      <ImageGallery/>
 
       <div style={{ marginBottom: 16 }}>
         {PERIODS.map((p) => (

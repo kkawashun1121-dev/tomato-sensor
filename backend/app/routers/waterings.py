@@ -22,3 +22,9 @@ def create_watering(payload: schemas.WateringCreate, db: Session = Depends(get_d
     if row is None:
         raise HTTPException(status_code=404, detail="Plant not found")
     return row
+
+@router.delete("/{watering_id}", status_code=204)
+def delete_watering(watering_id: int, db: Session = Depends(get_db)):
+    if not crud.delete_watering(db, watering_id):
+        raise HTTPException(status_code=404, detail="Watering not found")
+    return None

@@ -111,7 +111,19 @@ function PlantForm({ onCreated }) {
   )
 }
 
-function PlantRow({ plant, isActive, onSelect }) {
+function PlantRow({ plant, isActive, onSelect, onDeleted }) {
+  const handleDelete = async (e) => {
+    e.stopPropagation()  // 行のクリック (折りたたみ) を発火させない
+    if (!window.confirm(`「${plant.variety}」を削除しますか? (関連する水やり・収穫も全て削除されます)`)) return
+    try {
+      const res = await fetch(`/api/plants/${plant.id}`, { method: 'DELETE' })
+      if (!res.ok) throw new Error(`HTTP ${res.status}`)
+      onDeleted()
+    } catch (err) {
+      alert(`エラー: ${err.message}`)
+    }
+  }
+
   return (
     <div style={plantRowStyle}>
       <div
@@ -125,63 +137,19 @@ function PlantRow({ plant, isActive, onSelect }) {
             {plant.note && ` ・ ${plant.note}`}
           </span>
         </div>
-        <span style={{ fontSize: 12, color: '#999' }}>
-          {isActive ? '▲ 閉じる' : '▼ 操作'}
-        </span>
-      </div>
-
-      {isActive && (
-        <div style={{ marginTop: 12, padding: 12, background: '#f9f9f9', borderRadius: 4 }}>
-          <SubForm
-            label="💧 水やりを記録"
-            url="/api/waterings"
-            buildPayload={(form) => ({
-              plant_id: plant.id,
-              amount_ml: form.amount_ml ? Number(form.amount_ml) : null,
-              note: form.note || null,
-            })}
-            fields={[
-              { name: 'amount_ml', label: '量 (ml)', type: 'number' },
-              { name: 'note', label: 'メモ', type: 'text' },
-            ]}
-          />
-
-          <div style={{ height: 8 }} />
-
-          <SubForm
-            label="🍅 収穫を記録"
-            url="/api/harvests"
-            buildPayload={(form) => ({
-              plant_id: plant.id,
-              harvested_on: form.harvested_on,
-              count: Number(form.count),
-              brix: form.brix ? Number(form.brix) : null,
-              note: form.note || null,
-            })}
-            fields={[
-              {
-                name: 'harvested_on',
-                label: '収穫日',
-                type: 'date',
-                defaultValue: new Date().toISOString().slice(0, 10),
-                required: true,
-              },
-              {
-                name: 'count',
-                label: '個数',
-                type: 'number',
-                defaultValue: 1,
-                required: true,
-              },
-              { name: 'brix', label: '糖度', type: 'number', step: '0.1' },
-              { name: 'note', label: 'メモ', type: 'text' },
-            ]}
-          />
+        <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+          <button onClick={handleDelete} style={deleteBtnStyle}>削除</button>
+          <span style={{ fontSize: 12, color: '#999' }}>
+            {isActive ? '▲ 閉じる' : '▼ 操作'}
+          </span>
         </div>
+      </div>
       )}
     </div>
   )
 }
+
+
 
 function SubForm({ label, url, buildPayload, fields }) {
   const [values, setValues] = useState(

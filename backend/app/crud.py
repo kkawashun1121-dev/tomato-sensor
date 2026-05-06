@@ -219,3 +219,59 @@ def create_image(
     db.commit()
     db.refresh(row)
     return row
+
+def delete_plant(db: Session, plant_id: int) -> bool:
+    """株を削除 (関連する watering/harvest も CASCADE で削除)"""
+    row = db.get(models.Plant, plant_id)
+    if row is None:
+        return False
+    db.delete(row)
+    db.commit()
+    return True
+
+
+def delete_watering(db: Session, watering_id: int) -> bool:
+    row = db.get(models.Watering, watering_id)
+    if row is None:
+        return False
+    db.delete(row)
+    db.commit()
+    return True
+
+
+def delete_harvest(db: Session, harvest_id: int) -> bool:
+    row = db.get(models.Harvest, harvest_id)
+    if row is None:
+        return False
+    db.delete(row)
+    db.commit()
+    return True
+
+
+def delete_environment(db: Session, environment_id: int) -> bool:
+    row = db.get(models.EnvironmentReading, environment_id)
+    if row is None:
+        return False
+    db.delete(row)
+    db.commit()
+    return True
+
+
+def delete_image(db: Session, image_id: int) -> tuple[bool, str | None]:
+    """画像を削除 (ファイル名も返して、router 側で実ファイルも消す)"""
+    row = db.get(models.Image, image_id)
+    if row is None:
+        return False, None
+    filename = row.filename
+    db.delete(row)
+    db.commit()
+    return True, filename
+
+
+def delete_reading(db: Session, reading_id: int) -> bool:
+    row = db.get(models.Reading, reading_id)
+    if row is None:
+        return False
+    db.delete(row)
+    db.commit()
+    return True

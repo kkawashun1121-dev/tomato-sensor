@@ -21,4 +21,10 @@ def create_harvest(payload: schemas.HarvestCreate, db: Session = Depends(get_db)
     row = crud.create_harvest(db, payload)
     if row is None:
         raise HTTPException(status_code=404, detail="Plant not found")
-    return row
+    return ro
+
+@router.delete("/{harvest_id}", status_code=204)
+def delete_harvest(harvest_id: int, db: Session = Depends(get_db)):
+    if not crud.delete_harvest(db, harvest_id):
+        raise HTTPException(status_code=404, detail="Harvest not found")
+    return None
