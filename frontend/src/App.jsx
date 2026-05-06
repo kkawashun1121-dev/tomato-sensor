@@ -1,9 +1,10 @@
 import { useState } from 'react'
 import { useReadings } from './hooks/useReadings'
 import MoistureChart from './components/MoistureChart'
-import SummaryCards from './components/SummaryCards'  // ← 追加
+import SummaryCards from './components/SummaryCards'
 import './App.css'
 import EnvironmentPanel from './components/EnvironmentPanel'  
+import PlantManager from './components/PlantManager' 
 
 
 const PERIODS = [
@@ -23,6 +24,7 @@ function App() {
       {/* サマリーカードを追加 */}
       <SummaryCards readings={readings} />
       <EnvironmentPanel />
+      <PlantManager />
 
       <div style={{ marginBottom: 16 }}>
         {PERIODS.map((p) => (
