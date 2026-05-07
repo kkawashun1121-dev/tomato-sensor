@@ -53,24 +53,24 @@ class EnvironmentOut(BaseModel):
 class PlantCreate(BaseModel):
     variety: str = Field(..., max_length=64)
     planted_date: date
+    final_plant_height_cm: Optional[float] = Field(None, ge=0) 
     note: Optional[str] = Field(None, max_length=256)
 
 
 class PlantUpdate(BaseModel):
-    """部分更新用 (PATCH)。全フィールド省略可"""
     variety: Optional[str] = Field(None, max_length=64)
     planted_date: Optional[date] = None
+    final_plant_height_cm: Optional[float] = Field(None, ge=0) 
     note: Optional[str] = Field(None, max_length=256)
-
 
 class PlantOut(BaseModel):
     id: int
     variety: str
     planted_date: date
+    final_plant_height_cm: Optional[float] 
     note: Optional[str]
     created_at: datetime
     model_config = ConfigDict(from_attributes=True)
-    
 class WateringCreate(BaseModel):
     plant_id: int = Field(..., ge=1)
     watered_at: Optional[datetime] = None
@@ -109,20 +109,22 @@ class FruitCreate(BaseModel):
     flowering_date: Optional[date] = None
     harvested_on: Optional[date] = None
     fruit_height_cm: Optional[float] = Field(None, ge=0)
+    fruit_diameter_cm: Optional[float] = Field(None, ge=0)   
+    fruit_weight_g: Optional[float] = Field(None, ge=0)     
     final_plant_height_cm: Optional[float] = Field(None, ge=0)
     brix: Optional[float] = Field(None, ge=0)
     note: Optional[str] = Field(None, max_length=256)
 
 
 class FruitUpdate(BaseModel):
-    """部分更新用 (PATCH)。plant_id は変更不可"""
     flowering_date: Optional[date] = None
     harvested_on: Optional[date] = None
     fruit_height_cm: Optional[float] = Field(None, ge=0)
+    fruit_diameter_cm: Optional[float] = Field(None, ge=0)   
+    fruit_weight_g: Optional[float] = Field(None, ge=0)      
     final_plant_height_cm: Optional[float] = Field(None, ge=0)
     brix: Optional[float] = Field(None, ge=0)
     note: Optional[str] = Field(None, max_length=256)
-
 
 class FruitOut(BaseModel):
     id: int
@@ -130,12 +132,13 @@ class FruitOut(BaseModel):
     flowering_date: Optional[date]
     harvested_on: Optional[date]
     fruit_height_cm: Optional[float]
+    fruit_diameter_cm: Optional[float]      
+    fruit_weight_g: Optional[float]         
     final_plant_height_cm: Optional[float]
     brix: Optional[float]
     note: Optional[str]
     created_at: datetime
     model_config = ConfigDict(from_attributes=True)
-
 
 class SunlightSinceFlowering(BaseModel):
     """花が咲いてからの累積日照時間"""

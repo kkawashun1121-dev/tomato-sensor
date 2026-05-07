@@ -38,6 +38,13 @@ def update_fruit(
     return fruit
 
 
+@router.delete("/{fruit_id}", status_code=204)
+def delete_fruit(fruit_id: int, db: Session = Depends(get_db)):
+    if not crud.delete_fruit(db, fruit_id):
+        raise HTTPException(status_code=404, detail="Fruit not found")
+    return None
+
+
 @router.get(
     "/{fruit_id}/sunlight-since-flowering",
     response_model=schemas.SunlightSinceFlowering,
