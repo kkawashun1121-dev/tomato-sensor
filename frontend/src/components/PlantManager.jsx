@@ -1,9 +1,11 @@
 import { useState } from 'react'
 import { usePlants } from '../hooks/usePlants'
+import { useWaterings } from '../hooks/useWaterings'
+import { useHarvests } from '../hooks/useHarvests'
 
 export default function PlantManager() {
   const { plants, error, reload } = usePlants()
-  const [activePlantId, setActivePlantId] = useState(null)
+  const [activePlantId, setActivePlantId] = useState(null)  
 
   return (
     <div style={panelStyle}>
@@ -39,6 +41,7 @@ function PlantForm({ onCreated }) {
   const [plantedDate, setPlantedDate] = useState(
     new Date().toISOString().slice(0, 10)
   )
+   const [finalPlantHeight, setFinalPlantHeight] = useState('')
   const [note, setNote] = useState('')
   const [submitting, setSubmitting] = useState(false)
   const [msg, setMsg] = useState(null)
@@ -52,10 +55,11 @@ function PlantForm({ onCreated }) {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          variety,
-          planted_date: plantedDate,
-          note: note || null,
-        }),
+        variety,
+        planted_date: plantedDate,
+        final_plant_height_cm: finalPlantHeight ? Number(finalPlantHeight) : null,
+        note: note || null,
+      }),
       })
       if (!res.ok) throw new Error(`HTTP ${res.status}`)
       const data = await res.json()
@@ -91,6 +95,16 @@ function PlantForm({ onCreated }) {
           style={inputStyle}
         />
       </Field>
+      <Field label="最終的丈 (cm, 任意)">
+      <input
+        type="number"
+        step="0.1"
+        value={finalPlantHeight}
+        onChange={(e) => setFinalPlantHeight(e.target.value)}
+        placeholder="例: 180"
+        style={inputStyle}
+        />
+      </Field>
       <Field label="メモ (任意)">
         <input
           type="text"
@@ -113,6 +127,9 @@ function PlantForm({ onCreated }) {
 }
 
 function PlantRow({ plant, isActive, onSelect, onDeleted }) {
+  const { waterings, reload: reloadWaterings } = useWaterings(isActive ? plant.id : null)
+  const { harvests, reload: reloadHarvests } = useHarvests(isActive ? plant.id : null)
+
   const handleDelete = async (e) => {
     e.stopPropagation()
     if (!window.confirm(`「${plant.variety}」を削除しますか? (関連する水やり・収穫も全て削除されます)`)) return
@@ -135,6 +152,7 @@ function PlantRow({ plant, isActive, onSelect, onDeleted }) {
           <strong>{plant.variety}</strong>
           <span style={{ marginLeft: 12, color: '#666', fontSize: 13 }}>
             植: {plant.planted_date}
+            {plant.final_plant_height_cm != null && ` ・ 最終丈: ${plant.final_plant_height_cm}cm`}
             {plant.note && ` ・ ${plant.note}`}
           </span>
         </div>
@@ -160,9 +178,24 @@ function PlantRow({ plant, isActive, onSelect, onDeleted }) {
               { name: 'amount_ml', label: '量 (ml)', type: 'number' },
               { name: 'note', label: 'メモ', type: 'text' },
             ]}
+            onSuccess={reloadWaterings}
           />
 
-          <div style={{ height: 8 }} />
+          <HistoryList
+            label="水やり履歴"
+            items={waterings}
+            url="/api/waterings"
+            renderItem={(w) => (
+              <>
+                <span style={{ fontWeight: 'bold' }}>{formatDateTime(w.watered_at)}</span>
+                {w.amount_ml != null && ` ・ ${w.amount_ml}ml`}
+                {w.note && ` ・ ${w.note}`}
+              </>
+            )}
+            onChanged={reloadWaterings}
+          />
+
+          <div style={{ height: 16 }} />
 
           <SubForm
             label="🍅 収穫を記録"
@@ -192,6 +225,22 @@ function PlantRow({ plant, isActive, onSelect, onDeleted }) {
               { name: 'brix', label: '糖度', type: 'number', step: '0.1' },
               { name: 'note', label: 'メモ', type: 'text' },
             ]}
+            onSuccess={reloadHarvests}
+          />
+
+          <HistoryList
+            label="収穫履歴"
+            items={harvests}
+            url="/api/harvests"
+            renderItem={(h) => (
+              <>
+                <span style={{ fontWeight: 'bold' }}>{h.harvested_on}</span>
+                {` ・ ${h.count}個`}
+                {h.brix != null && ` ・ 糖度${h.brix}`}
+                {h.note && ` ・ ${h.note}`}
+              </>
+            )}
+            onChanged={reloadHarvests}
           />
         </div>
       )}
@@ -199,7 +248,67 @@ function PlantRow({ plant, isActive, onSelect, onDeleted }) {
   )
 }
 
-function SubForm({ label, url, buildPayload, fields }) {
+function HistoryList({ label, items, url, renderItem, onChanged }) {
+  const handleDelete = async (id) => {
+    if (!window.confirm(`この履歴を削除しますか?`)) return
+    try {
+      const res = await fetch(`${url}/${id}`, { method: 'DELETE' })
+      if (!res.ok) throw new Error(`HTTP ${res.status}`)
+      onChanged()
+    } catch (err) {
+      alert(`エラー: ${err.message}`)
+    }
+  }
+
+  if (items.length === 0) {
+    return (
+      <div style={{ marginTop: 8, fontSize: 12, color: '#999' }}>
+        ({label}: まだありません)
+      </div>
+    )
+  }
+
+  return (
+    <div style={{ marginTop: 8 }}>
+      <div style={{ fontSize: 12, color: '#666', marginBottom: 4 }}>
+        {label} ({items.length})
+      </div>
+      <div style={{ maxHeight: 200, overflowY: 'auto' }}>
+        {items.map((item) => (
+          <div
+            key={item.id}
+            style={{
+              display: 'flex',
+              justifyContent: 'space-between',
+              alignItems: 'center',
+              padding: '6px 8px',
+              fontSize: 13,
+              borderBottom: '1px solid #eee',
+            }}
+          >
+            <span>{renderItem(item)}</span>
+            <button
+              onClick={() => handleDelete(item.id)}
+              style={{
+                color: '#e74c3c',
+                background: 'transparent',
+                border: 'none',
+                cursor: 'pointer',
+                fontSize: 14,
+                padding: '0 4px',
+              }}
+              title="削除"
+            >
+              ×
+            </button>
+          </div>
+        ))}
+      </div>
+    </div>
+  )
+}
+
+function SubForm({ label, url, buildPayload, fields, onSuccess }) {
   const [values, setValues] = useState(
     Object.fromEntries(fields.map((f) => [f.name, f.defaultValue ?? '']))
   )
@@ -225,6 +334,7 @@ function SubForm({ label, url, buildPayload, fields }) {
       setValues(
         Object.fromEntries(fields.map((f) => [f.name, f.defaultValue ?? '']))
       )
+      if (onSuccess) onSuccess()
     } catch (err) {
       setMsg(`エラー: ${err.message}`)
     } finally {
@@ -267,6 +377,16 @@ function Field({ label, children }) {
       {children}
     </label>
   )
+}
+
+function formatDateTime(iso) {
+  const d = new Date(iso)
+  return d.toLocaleString('ja-JP', {
+    month: '2-digit',
+    day: '2-digit',
+    hour: '2-digit',
+    minute: '2-digit',
+  })
 }
 
 // --- styles ---
