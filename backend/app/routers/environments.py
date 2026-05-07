@@ -1,5 +1,5 @@
 """環境データ (天候/気温/湿度/日照) のルーター"""
-from fastapi import APIRouter, Depends
+from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 from .. import crud, schemas
 from ..database import get_db
@@ -17,6 +17,7 @@ def create_environment(
     payload: schemas.EnvironmentCreate, db: Session = Depends(get_db)
 ):
     return crud.create_environment(db, payload)
+
 
 @router.delete("/{environment_id}", status_code=204)
 def delete_environment(environment_id: int, db: Session = Depends(get_db)):

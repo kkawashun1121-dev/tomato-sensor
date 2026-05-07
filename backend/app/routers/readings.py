@@ -1,29 +1,28 @@
-"""ESP32 からのセンサーデータと取得API"""
-from typing import Optional
-from fastapi import APIRouter, Depends, Query, status,HTTPException
+"""土壌水分 (Reading) のルーター"""
+from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
-
 from .. import crud, schemas
 from ..database import get_db
 
 router = APIRouter(prefix="/api/readings", tags=["readings"])
 
 
-@router.post("", response_model=list[schemas.ReadingOut],
-             status_code=status.HTTP_201_CREATED)
-def create_readings(payload: schemas.ReadingBatchCreate, db: Session = Depends(get_db)):
-    """ESP32 から3センサー分を一括投稿"""
-    return crud.create_reading_batch(db, payload)
-
-
 @router.get("", response_model=list[schemas.ReadingOut])
 def list_readings(
-    limit: int = Query(600, ge=1, le=10000),
-    hours: Optional[float] = Query(None, gt=0),
+    limit: int = 600,
+    hours: int | None = None,
     db: Session = Depends(get_db),
 ):
-    """履歴取得"""
     return crud.list_readings(db, limit=limit, hours=hours)
+
+
+@router.post("", response_model=list[schemas.ReadingOut])
+def post_readings(
+    payload: schemas.ReadingBatchCreate,
+    db: Session = Depends(get_db),
+):
+    return crud.create_reading_batch(db, payload)
+
 
 @router.delete("/{reading_id}", status_code=204)
 def delete_reading(reading_id: int, db: Session = Depends(get_db)):

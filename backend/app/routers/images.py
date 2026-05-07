@@ -10,7 +10,6 @@ from ..database import get_db
 
 router = APIRouter(prefix="/api/images", tags=["images"])
 
-# 画像保存ディレクトリ (起動時に存在保証)
 IMAGE_DIR = Path(settings.image_dir)
 IMAGE_DIR.mkdir(parents=True, exist_ok=True)
 
@@ -35,7 +34,6 @@ async def upload_image(
     taken_at: datetime | None = Form(None),
     db: Session = Depends(get_db),
 ):
-    # 拡張子チェック
     ext = Path(file.filename or "").suffix.lower()
     if ext not in ALLOWED_EXTENSIONS:
         raise HTTPException(
@@ -43,15 +41,12 @@ async def upload_image(
             detail=f"Unsupported file type: {ext}. Allowed: {ALLOWED_EXTENSIONS}",
         )
 
-    # ファイル名は UUID にして衝突を避ける
     new_filename = f"{uuid.uuid4().hex}{ext}"
     save_path = IMAGE_DIR / new_filename
 
-    # 実ファイル保存
     contents = await file.read()
     save_path.write_bytes(contents)
 
-    # DB に記録
     row = crud.create_image(
         db,
         filename=new_filename,
@@ -64,12 +59,12 @@ async def upload_image(
     )
     return row
 
+
 @router.delete("/{image_id}", status_code=204)
 def delete_image(image_id: int, db: Session = Depends(get_db)):
     ok, filename = crud.delete_image(db, image_id)
     if not ok:
         raise HTTPException(status_code=404, detail="Image not found")
-    # ディスク上のファイルも削除
     if filename:
         path = IMAGE_DIR / filename
         if path.exists():

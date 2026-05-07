@@ -34,6 +34,7 @@ def update_plant(
         raise HTTPException(status_code=404, detail="Plant not found")
     return plant
 
+
 @router.delete("/{plant_id}", status_code=204)
 def delete_plant(plant_id: int, db: Session = Depends(get_db)):
     if not crud.delete_plant(db, plant_id):

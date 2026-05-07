@@ -1,24 +1,22 @@
-"""Pydantic スキーマ (API入出力)"""
-from datetime import datetime,timedelta
+"""CRUD 操作 (DB アクセス)"""
+from datetime import datetime, timedelta, date as _date
 from sqlalchemy import select
 from sqlalchemy.orm import Session
 from . import models
 
-from datetime import date as _date
-  
-def list_readings(db: Session, limit: int = 600, hours: int | None = None):
-    """測定値の一覧を新しい順で取得"""
-    stmt = select(models.Reading)
 
+# ============ Reading (土壌水分) ============
+
+def list_readings(db: Session, limit: int = 600, hours: int | None = None):
+    stmt = select(models.Reading)
     if hours is not None:
         since = datetime.utcnow() - timedelta(hours=hours)
         stmt = stmt.where(models.Reading.recorded_at >= since)
-
     stmt = stmt.order_by(models.Reading.recorded_at.desc()).limit(limit)
     return db.execute(stmt).scalars().all()
 
+
 def create_reading_batch(db: Session, payload):
-    """ESP32 からの一括測定値を保存"""
     rows = []
     for sample in payload.readings:
         row = models.Reading(
@@ -34,8 +32,28 @@ def create_reading_batch(db: Session, payload):
         db.refresh(row)
     return rows
 
+
+def delete_reading(db: Session, reading_id: int) -> bool:
+    row = db.get(models.Reading, reading_id)
+    if row is None:
+        return False
+    db.delete(row)
+    db.commit()
+    return True
+
+
+# ============ EnvironmentReading (天候) ============
+
+def list_environments(db: Session, limit: int = 100):
+    stmt = (
+        select(models.EnvironmentReading)
+        .order_by(models.EnvironmentReading.recorded_at.desc())
+        .limit(limit)
+    )
+    return db.execute(stmt).scalars().all()
+
+
 def create_environment(db: Session, payload):
-    """環境データを 1 件追加"""
     data = payload.model_dump(exclude_none=True)
     row = models.EnvironmentReading(**data)
     db.add(row)
@@ -43,19 +61,28 @@ def create_environment(db: Session, payload):
     db.refresh(row)
     return row
 
+
+def delete_environment(db: Session, environment_id: int) -> bool:
+    row = db.get(models.EnvironmentReading, environment_id)
+    if row is None:
+        return False
+    db.delete(row)
+    db.commit()
+    return True
+
+
+# ============ Plant (株) ============
+
 def list_plants(db: Session):
-    """株の一覧 (新しい順)"""
     stmt = select(models.Plant).order_by(models.Plant.id.desc())
     return db.execute(stmt).scalars().all()
 
 
 def get_plant(db: Session, plant_id: int):
-    """1 株を取得 (無ければ None)"""
     return db.get(models.Plant, plant_id)
 
 
 def create_plant(db: Session, payload):
-    """株を 1 件追加"""
     row = models.Plant(**payload.model_dump())
     db.add(row)
     db.commit()
@@ -64,7 +91,6 @@ def create_plant(db: Session, payload):
 
 
 def update_plant(db: Session, plant_id: int, payload):
-    """株を部分更新 (送られたフィールドだけ更新)"""
     row = db.get(models.Plant, plant_id)
     if row is None:
         return None
@@ -74,8 +100,19 @@ def update_plant(db: Session, plant_id: int, payload):
     db.refresh(row)
     return row
 
+
+def delete_plant(db: Session, plant_id: int) -> bool:
+    row = db.get(models.Plant, plant_id)
+    if row is None:
+        return False
+    db.delete(row)
+    db.commit()
+    return True
+
+
+# ============ Watering (水やり) ============
+
 def list_waterings(db: Session, plant_id: int | None = None, limit: int = 200):
-    """水やり履歴 (新しい順、plant_id で絞り込み可能)"""
     stmt = select(models.Watering)
     if plant_id is not None:
         stmt = stmt.where(models.Watering.plant_id == plant_id)
@@ -84,7 +121,6 @@ def list_waterings(db: Session, plant_id: int | None = None, limit: int = 200):
 
 
 def create_watering(db: Session, payload):
-    """水やりを 1 件追加 (Plant の存在チェック付き)"""
     plant = db.get(models.Plant, payload.plant_id)
     if plant is None:
         return None
@@ -95,8 +131,19 @@ def create_watering(db: Session, payload):
     db.refresh(row)
     return row
 
+
+def delete_watering(db: Session, watering_id: int) -> bool:
+    row = db.get(models.Watering, watering_id)
+    if row is None:
+        return False
+    db.delete(row)
+    db.commit()
+    return True
+
+
+# ============ Harvest (収穫) ============
+
 def list_harvests(db: Session, plant_id: int | None = None, limit: int = 200):
-    """収穫履歴 (新しい順、plant_id で絞り込み可能)"""
     stmt = select(models.Harvest)
     if plant_id is not None:
         stmt = stmt.where(models.Harvest.plant_id == plant_id)
@@ -105,7 +152,6 @@ def list_harvests(db: Session, plant_id: int | None = None, limit: int = 200):
 
 
 def create_harvest(db: Session, payload):
-    """収穫を 1 件追加 (Plant の存在チェック付き)"""
     plant = db.get(models.Plant, payload.plant_id)
     if plant is None:
         return None
@@ -115,6 +161,17 @@ def create_harvest(db: Session, payload):
     db.refresh(row)
     return row
 
+
+def delete_harvest(db: Session, harvest_id: int) -> bool:
+    row = db.get(models.Harvest, harvest_id)
+    if row is None:
+        return False
+    db.delete(row)
+    db.commit()
+    return True
+
+
+# ============ Fruit (実) ============
 
 def list_fruits(db: Session, plant_id: int | None = None):
     stmt = select(models.Fruit)
@@ -150,19 +207,22 @@ def update_fruit(db: Session, fruit_id: int, payload):
     return row
 
 
+def delete_fruit(db: Session, fruit_id: int) -> bool:
+    row = db.get(models.Fruit, fruit_id)
+    if row is None:
+        return False
+    db.delete(row)
+    db.commit()
+    return True
+
+
 def sunlight_since_flowering(db: Session, fruit_id: int):
-    """花が咲いてからの累積日照時間を計算"""
     fruit = db.get(models.Fruit, fruit_id)
     if fruit is None or fruit.flowering_date is None:
         return None
-
-    # 終端日: 収穫済みなら収穫日、未収穫なら今日
     until = fruit.harvested_on or _date.today()
-
-    # 開花日 0:00 から終端日 23:59 までの環境データの sunlight_hours を合計
     start = datetime.combine(fruit.flowering_date, datetime.min.time())
     end = datetime.combine(until, datetime.max.time())
-
     stmt = select(models.EnvironmentReading).where(
         models.EnvironmentReading.recorded_at >= start,
         models.EnvironmentReading.recorded_at <= end,
@@ -171,7 +231,6 @@ def sunlight_since_flowering(db: Session, fruit_id: int):
     rows = db.execute(stmt).scalars().all()
     total = sum(r.sunlight_hours for r in rows)
     days = (until - fruit.flowering_date).days + 1
-
     return {
         "fruit_id": fruit.id,
         "flowering_date": fruit.flowering_date,
@@ -179,7 +238,10 @@ def sunlight_since_flowering(db: Session, fruit_id: int):
         "total_sunlight_hours": round(total, 2),
         "days": days,
     }
-    
+
+
+# ============ Image (画像) ============
+
 def list_images(
     db: Session,
     plant_id: int | None = None,
@@ -220,45 +282,9 @@ def create_image(
     db.refresh(row)
     return row
 
-def delete_plant(db: Session, plant_id: int) -> bool:
-    """株を削除 (関連する watering/harvest も CASCADE で削除)"""
-    row = db.get(models.Plant, plant_id)
-    if row is None:
-        return False
-    db.delete(row)
-    db.commit()
-    return True
-
-
-def delete_watering(db: Session, watering_id: int) -> bool:
-    row = db.get(models.Watering, watering_id)
-    if row is None:
-        return False
-    db.delete(row)
-    db.commit()
-    return True
-
-
-def delete_harvest(db: Session, harvest_id: int) -> bool:
-    row = db.get(models.Harvest, harvest_id)
-    if row is None:
-        return False
-    db.delete(row)
-    db.commit()
-    return True
-
-
-def delete_environment(db: Session, environment_id: int) -> bool:
-    row = db.get(models.EnvironmentReading, environment_id)
-    if row is None:
-        return False
-    db.delete(row)
-    db.commit()
-    return True
-
 
 def delete_image(db: Session, image_id: int) -> tuple[bool, str | None]:
-    """画像を削除 (ファイル名も返して、router 側で実ファイルも消す)"""
+    """戻り値: (削除できたか, 削除されたファイル名)"""
     row = db.get(models.Image, image_id)
     if row is None:
         return False, None
@@ -266,12 +292,3 @@ def delete_image(db: Session, image_id: int) -> tuple[bool, str | None]:
     db.delete(row)
     db.commit()
     return True, filename
-
-
-def delete_reading(db: Session, reading_id: int) -> bool:
-    row = db.get(models.Reading, reading_id)
-    if row is None:
-        return False
-    db.delete(row)
-    db.commit()
-    return True
