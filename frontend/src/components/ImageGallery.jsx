@@ -5,6 +5,17 @@ export default function ImageGallery() {
   const { images, error, reload } = useImages()
   const [selectedImage, setSelectedImage] = useState(null)
 
+  const handleDelete = async (imgId) => {
+    if (!window.confirm('この画像を削除しますか?')) return
+    try {
+      const res = await fetch(`/api/images/${imgId}`, { method: 'DELETE' })
+      if (!res.ok) throw new Error(`HTTP ${res.status}`)
+      reload()
+    } catch (err) {
+      alert(`エラー: ${err.message}`)
+    }
+  }
+
   return (
     <div style={panelStyle}>
       <h2 style={{ marginTop: 0 }}>📷 画像ギャラリー</h2>
@@ -19,18 +30,32 @@ export default function ImageGallery() {
       ) : (
         <div style={gridStyle}>
           {images.map((img) => (
-            <div
-              key={img.id}
-              style={thumbStyle}
-              onClick={() => setSelectedImage(img)}
-            >
-              <img
-                src={`/static/images/${img.filename}`}
-                alt={img.description || img.original_name || ''}
-                style={{ width: '100%', height: 120, objectFit: 'cover', display: 'block' }}
-              />
+            <div key={img.id} style={thumbStyle}>
+              <div onClick={() => setSelectedImage(img)} style={{ cursor: 'pointer' }}>
+                <img
+                  src={`/static/images/${img.filename}`}
+                  alt={img.description || img.original_name || ''}
+                  style={{ width: '100%', height: 120, objectFit: 'cover', display: 'block' }}
+                />
+              </div>
               <div style={thumbCaptionStyle}>
-                {img.description || img.original_name || `image ${img.id}`}
+                <span style={{ flex: 1, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+                  {img.description || img.original_name || `image ${img.id}`}
+                </span>
+                <button
+                  onClick={() => handleDelete(img.id)}
+                  style={{
+                    marginLeft: 6,
+                    color: '#e74c3c',
+                    background: 'transparent',
+                    border: 'none',
+                    cursor: 'pointer',
+                    fontSize: 14,
+                  }}
+                  title="削除"
+                >
+                  ×
+                </button>
               </div>
             </div>
           ))}
@@ -72,7 +97,6 @@ function ImageUploadForm({ onUploaded }) {
       setMsg(`アップロード成功 (id: ${data.id})`)
       setFile(null)
       setDescription('')
-      // ファイル input をクリアするため form を reset
       e.target.reset()
       onUploaded()
     } catch (err) {
@@ -187,15 +211,13 @@ const thumbStyle = {
   border: '1px solid #eee',
   borderRadius: 4,
   overflow: 'hidden',
-  cursor: 'pointer',
   transition: 'transform 0.15s',
 }
 const thumbCaptionStyle = {
   padding: '6px 8px',
   fontSize: 12,
   color: '#555',
-  whiteSpace: 'nowrap',
-  overflow: 'hidden',
-  textOverflow: 'ellipsis',
   background: '#fafafa',
+  display: 'flex',
+  alignItems: 'center',
 }
