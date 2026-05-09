@@ -46,3 +46,87 @@ POST payload: {
 OK, created id: 6
 [2026/05/08  7:52:43.24] Finished 
  
+[2026/05/08  9:48:56.65] Starting fetch_weather 
+ERROR: <urlopen error [WinError 10061] 対象のコンピューターによって拒否されたため、接続できませんでした。>
+Fetching: https://api.open-meteo.com/v1/forecast?latitude=34.95&longitude=137.16&current=temperature_2m%2Crelative_humidity_2m%2Cweather_code%2Csunshine_duration&timezone=Asia%2FTokyo
+POST payload: {
+  "weather": "概ね晴れ",
+  "temperature_c": 22.3,
+  "humidity_pct": 74,
+  "sunlight_hours": 0.25,
+  "note": "auto: open-meteo @ 34.95,137.16"
+}
+[2026/05/08  9:49:02.65] Finished 
+ 
+[2026/05/08 10:36:27.69] Starting fetch_weather 
+ERROR: <urlopen error [WinError 10061] 対象のコンピューターによって拒否されたため、接続できませんでした。>
+Fetching: https://api.open-meteo.com/v1/forecast?latitude=34.95&longitude=137.16&current=temperature_2m%2Crelative_humidity_2m%2Cweather_code%2Csunshine_duration&timezone=Asia%2FTokyo
+POST payload: {
+  "weather": "概ね晴れ",
+  "temperature_c": 23.1,
+  "humidity_pct": 70,
+  "sunlight_hours": 0.25,
+  "note": "auto: open-meteo @ 34.95,137.16"
+}
+[2026/05/08 10:36:33.43] Finished 
+ 
+[2026/05/08 11:36:27.66] Starting fetch_weather 
+ERROR: <urlopen error [WinError 10061] 対象のコンピューターによって拒否されたため、接続できませんでした。>
+Fetching: https://api.open-meteo.com/v1/forecast?latitude=34.95&longitude=137.16&current=temperature_2m%2Crelative_humidity_2m%2Cweather_code%2Csunshine_duration&timezone=Asia%2FTokyo
+POST payload: {
+  "weather": "一部曇り",
+  "temperature_c": 24.1,
+  "humidity_pct": 65,
+  "sunlight_hours": 0.25,
+  "note": "auto: open-meteo @ 34.95,137.16"
+}
+[2026/05/08 11:36:33.42] Finished 
+ 
+[2026/05/08 12:36:27.67] Starting fetch_weather 
+ERROR: <urlopen error [WinError 10061] 対象のコンピューターによって拒否されたため、接続できませんでした。>
+Fetching: https://api.open-meteo.com/v1/forecast?latitude=34.95&longitude=137.16&current=temperature_2m%2Crelative_humidity_2m%2Cweather_code%2Csunshine_duration&timezone=Asia%2FTokyo
+POST payload: {
+  "weather": "一部曇り",
+  "temperature_c": 24.2,
+  "humidity_pct": 66,
+  "sunlight_hours": 0.0,
+  "note": "auto: open-meteo @ 34.95,137.16"
+}
+[2026/05/08 12:36:33.41] Finished 
+ 
+[2026/05/08 13:36:27.67] Starting fetch_weather 
+ERROR: <urlopen error [WinError 10061] 対象のコンピューターによって拒否されたため、接続できませんでした。>
+Fetching: https://api.open-meteo.com/v1/forecast?latitude=34.95&longitude=137.16&current=temperature_2m%2Crelative_humidity_2m%2Cweather_code%2Csunshine_duration&timezone=Asia%2FTokyo
+POST payload: {
+  "weather": "一部曇り",
+  "temperature_c": 23.3,
+  "humidity_pct": 75,
+  "sunlight_hours": 0.0,
+  "note": "auto: open-meteo @ 34.95,137.16"
+}
+[2026/05/08 13:36:33.79] Finished 
+ 
+[2026/05/09 21:25:48.40] Starting fetch_weather 
+ERROR: <urlopen error [WinError 10061] 対象のコンピューターによって拒否されたため、接続できませんでした。>
+Fetching: https://api.open-meteo.com/v1/forecast?latitude=34.95&longitude=137.16&current=temperature_2m%2Crelative_humidity_2m%2Cweather_code%2Csunshine_duration&timezone=Asia%2FTokyo
+POST payload: {
+  "weather": "概ね晴れ",
+  "temperature_c": 15.4,
+  "humidity_pct": 57,
+  "sunlight_hours": 0.0,
+  "note": "auto: open-meteo @ 34.95,137.16"
+}
+[2026/05/09 21:25:59.33] Finished 
+ 
+[2026/05/09 21:36:27.74] Starting fetch_weather 
+ERROR: <urlopen error [WinError 10061] 対象のコンピューターによって拒否されたため、接続できませんでした。>
+Fetching: https://api.open-meteo.com/v1/forecast?latitude=34.95&longitude=137.16&current=temperature_2m%2Crelative_humidity_2m%2Cweather_code%2Csunshine_duration&timezone=Asia%2FTokyo
+POST payload: {
+  "weather": "概ね晴れ",
+  "temperature_c": 15.2,
+  "humidity_pct": 58,
+  "sunlight_hours": 0.0,
+  "note": "auto: open-meteo @ 34.95,137.16"
+}
+[2026/05/09 21:36:35.67] Finished 
+ 
