@@ -130,3 +130,160 @@ POST payload: {
 }
 [2026/05/09 21:36:35.67] Finished 
  
+[2026/05/09 22:36:27.80] Starting fetch_weather 
+Fetching: https://api.open-meteo.com/v1/forecast?latitude=34.95&longitude=137.16&current=temperature_2m%2Crelative_humidity_2m%2Cweather_code%2Csunshine_duration&timezone=Asia%2FTokyo
+POST payload: {
+  "weather": "ê∞ÇÍ",
+  "temperature_c": 14.3,
+  "humidity_pct": 62,
+  "sunlight_hours": 0.0,
+  "note": "auto: open-meteo @ 34.95,137.16"
+}
+OK, created id: 7
+[2026/05/09 22:36:29.73] Finished 
+ 
+[2026/05/10  0:42:52.62] Starting fetch_weather 
+Fetching: https://api.open-meteo.com/v1/forecast?latitude=34.95&longitude=137.16&current=temperature_2m%2Crelative_humidity_2m%2Cweather_code%2Csunshine_duration&timezone=Asia%2FTokyo
+POST payload: {
+  "weather": "ê∞ÇÍ",
+  "temperature_c": 12.4,
+  "humidity_pct": 67,
+  "sunlight_hours": 0.0,
+  "note": "auto: open-meteo @ 34.95,137.16"
+}
+OK, created id: 8
+[2026/05/10  0:43:00.00] Finished 
+ 
+[2026/05/10  1:36:57.26] Starting fetch_weather 
+Fetching: https://api.open-meteo.com/v1/forecast?latitude=34.95&longitude=137.16&current=temperature_2m%2Crelative_humidity_2m%2Cweather_code%2Csunshine_duration&timezone=Asia%2FTokyo
+POST payload: {
+  "weather": "ê∞ÇÍ",
+  "temperature_c": 11.5,
+  "humidity_pct": 71,
+  "sunlight_hours": 0.0,
+  "note": "auto: open-meteo @ 34.95,137.16"
+}
+OK, created id: 9
+[2026/05/10  1:37:01.15] Finished 
+ 
+[2026/05/10  3:09:58.55] Starting fetch_weather 
+Fetching: https://api.open-meteo.com/v1/forecast?latitude=34.95&longitude=137.16&current=temperature_2m%2Crelative_humidity_2m%2Cweather_code%2Csunshine_duration&timezone=Asia%2FTokyo
+Traceback (most recent call last):
+  File "C:\project\tomato-sensor\scripts\fetch_weather.py", line 92, in <module>
+    main()
+    ~~~~^^
+  File "C:\project\tomato-sensor\scripts\fetch_weather.py", line 68, in main
+    weather = fetch_weather(args.lat, args.lon)
+  File "C:\project\tomato-sensor\scripts\fetch_weather.py", line 45, in fetch_weather
+    with urllib.request.urlopen(url, timeout=15) as resp:
+         ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\Kkawa\AppData\Local\Programs\Python\Python314\Lib\urllib\request.py", line 187, in urlopen
+    return opener.open(url, data, timeout)
+           ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Kkawa\AppData\Local\Programs\Python\Python314\Lib\urllib\request.py", line 487, in open
+    response = self._open(req, data)
+  File "C:\Users\Kkawa\AppData\Local\Programs\Python\Python314\Lib\urllib\request.py", line 504, in _open
+    result = self._call_chain(self.handle_open, protocol, protocol +
+                              '_open', req)
+  File "C:\Users\Kkawa\AppData\Local\Programs\Python\Python314\Lib\urllib\request.py", line 464, in _call_chain
+    result = func(*args)
+  File "C:\Users\Kkawa\AppData\Local\Programs\Python\Python314\Lib\urllib\request.py", line 1369, in https_open
+    return self.do_open(http.client.HTTPSConnection, req,
+           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                        context=self._context)
+                        ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Kkawa\AppData\Local\Programs\Python\Python314\Lib\urllib\request.py", line 1325, in do_open
+    r = h.getresponse()
+  File "C:\Users\Kkawa\AppData\Local\Programs\Python\Python314\Lib\http\client.py", line 1450, in getresponse
+    response.begin()
+    ~~~~~~~~~~~~~~^^
+  File "C:\Users\Kkawa\AppData\Local\Programs\Python\Python314\Lib\http\client.py", line 336, in begin
+    version, status, reason = self._read_status()
+                              ~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Kkawa\AppData\Local\Programs\Python\Python314\Lib\http\client.py", line 297, in _read_status
+    line = str(self.fp.readline(_MAXLINE + 1), "iso-8859-1")
+               ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+  File "C:\Users\Kkawa\AppData\Local\Programs\Python\Python314\Lib\socket.py", line 725, in readinto
+    return self._sock.recv_into(b)
+           ~~~~~~~~~~~~~~~~~~~~^^^
+  File "C:\Users\Kkawa\AppData\Local\Programs\Python\Python314\Lib\ssl.py", line 1304, in recv_into
+    return self.read(nbytes, buffer)
+           ~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "C:\Users\Kkawa\AppData\Local\Programs\Python\Python314\Lib\ssl.py", line 1138, in read
+    return self._sslobj.read(len, buffer)
+           ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+TimeoutError: The read operation timed out
+[2026/05/10  3:10:17.10] Finished 
+ 
+[2026/05/10  4:10:34.24] Starting fetch_weather 
+ERROR: timed out
+Fetching: https://api.open-meteo.com/v1/forecast?latitude=34.95&longitude=137.16&current=temperature_2m%2Crelative_humidity_2m%2Cweather_code%2Csunshine_duration&timezone=Asia%2FTokyo
+POST payload: {
+  "weather": "ê∞ÇÍ",
+  "temperature_c": 10.2,
+  "humidity_pct": 76,
+  "sunlight_hours": 0.0,
+  "note": "auto: open-meteo @ 34.95,137.16"
+}
+[2026/05/10  4:10:51.95] Finished 
+ 
+[2026/05/10  8:41:55.20] Starting fetch_weather 
+Fetching: https://api.open-meteo.com/v1/forecast?latitude=34.95&longitude=137.16&current=temperature_2m%2Crelative_humidity_2m%2Cweather_code%2Csunshine_duration&timezone=Asia%2FTokyo
+POST payload: {
+  "weather": "ê∞ÇÍ",
+  "temperature_c": 15.7,
+  "humidity_pct": 46,
+  "sunlight_hours": 0.25,
+  "note": "auto: open-meteo @ 34.95,137.16"
+}
+OK, created id: 11
+[2026/05/10  8:42:00.80] Finished 
+ 
+[2026/05/10  9:38:47.57] Starting fetch_weather 
+Fetching: https://api.open-meteo.com/v1/forecast?latitude=34.95&longitude=137.16&current=temperature_2m%2Crelative_humidity_2m%2Cweather_code%2Csunshine_duration&timezone=Asia%2FTokyo
+POST payload: {
+  "weather": "ê∞ÇÍ",
+  "temperature_c": 18.2,
+  "humidity_pct": 46,
+  "sunlight_hours": 0.25,
+  "note": "auto: open-meteo @ 34.95,137.16"
+}
+OK, created id: 12
+[2026/05/10  9:38:50.82] Finished 
+ 
+[2026/05/10 10:36:27.80] Starting fetch_weather 
+Fetching: https://api.open-meteo.com/v1/forecast?latitude=34.95&longitude=137.16&current=temperature_2m%2Crelative_humidity_2m%2Cweather_code%2Csunshine_duration&timezone=Asia%2FTokyo
+POST payload: {
+  "weather": "ê∞ÇÍ",
+  "temperature_c": 20.0,
+  "humidity_pct": 40,
+  "sunlight_hours": 0.25,
+  "note": "auto: open-meteo @ 34.95,137.16"
+}
+OK, created id: 13
+[2026/05/10 10:36:30.76] Finished 
+ 
+[2026/05/10 13:52:24.27] Starting fetch_weather 
+Fetching: https://api.open-meteo.com/v1/forecast?latitude=34.95&longitude=137.16&current=temperature_2m%2Crelative_humidity_2m%2Cweather_code%2Csunshine_duration&timezone=Asia%2FTokyo
+POST payload: {
+  "weather": "ê∞ÇÍ",
+  "temperature_c": 22.6,
+  "humidity_pct": 52,
+  "sunlight_hours": 0.25,
+  "note": "auto: open-meteo @ 34.95,137.16"
+}
+OK, created id: 14
+[2026/05/10 13:52:30.51] Finished 
+ 
+[2026/05/10 14:36:27.66] Starting fetch_weather 
+Fetching: https://api.open-meteo.com/v1/forecast?latitude=34.95&longitude=137.16&current=temperature_2m%2Crelative_humidity_2m%2Cweather_code%2Csunshine_duration&timezone=Asia%2FTokyo
+POST payload: {
+  "weather": "ê∞ÇÍ",
+  "temperature_c": 22.3,
+  "humidity_pct": 51,
+  "sunlight_hours": 0.25,
+  "note": "auto: open-meteo @ 34.95,137.16"
+}
+OK, created id: 15
+[2026/05/10 14:36:29.58] Finished 
+ 
