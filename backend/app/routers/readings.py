@@ -1,4 +1,5 @@
 """土壌水分 (Reading) のルーター"""
+## post/api/readingsがきたら何をするか書いてあります。
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 from .. import crud, schemas

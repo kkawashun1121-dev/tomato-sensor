@@ -1,4 +1,6 @@
 """FastAPI のエントリーポイント"""
+## routerのモト 
+
 from fastapi.staticfiles import StaticFiles
 from .routers import readings, environments, plants, waterings, harvests, fruits, images
 from contextlib import asynccontextmanager
@@ -7,7 +9,7 @@ from fastapi.middleware.cors import CORSMiddleware
 
 from .config import settings
 from .database import Base, engine
-from . import models  # テーブル作成のためにimport
+from . import models  
 
 
 @asynccontextmanager
@@ -22,14 +24,14 @@ app = FastAPI(
     lifespan=lifespan,
 )
 
+## ここ！
 app.include_router(readings.router)
-app.include_router(environments.router)  # ← 追加
+app.include_router(environments.router)  
 app.include_router(plants.router)
 app.include_router(waterings.router)
 app.include_router(harvests.router)
 app.include_router(fruits.router)
 app.include_router(images.router)
-
 app.mount(
     "/static/images",
     StaticFiles(directory=settings.image_dir),
