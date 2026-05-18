@@ -28,7 +28,7 @@ const int WET_VALUES[3] = {1655, 1475, 1515};
 
 // 測定間隔 (ミリ秒) — 15 分 = 15*60*1000 = 900000
 //#define INTERVAL_MS    900000UL (本番用 コメントアウト中)
-#define INTERVAL_MS    30000UL    // 30 秒に変更 (校正用)
+#define INTERVAL_MS    900000UL    // 30 秒に変更 (校正用)
 
 
 #define WIFI_SSID      "KAONM-F89FD-G"
