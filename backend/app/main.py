@@ -6,7 +6,6 @@ from .routers import readings, environments, plants, waterings, harvests, fruits
 from contextlib import asynccontextmanager
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-
 from .config import settings
 from .database import Base, engine
 from . import models  
@@ -24,7 +23,6 @@ app = FastAPI(
     lifespan=lifespan,
 )
 
-## ここ！
 app.include_router(readings.router)
 app.include_router(environments.router)  
 app.include_router(plants.router)

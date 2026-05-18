@@ -47,7 +47,7 @@ class Plant(Base):
     id: Mapped[int] = mapped_column(Integer, primary_key=True, autoincrement=True)
     variety: Mapped[str] = mapped_column(String(64), nullable=False)
     planted_date: Mapped[datetime] = mapped_column(Date, nullable=False)
-    final_plant_height_cm: Mapped[float | None] = mapped_column(Float, nullable=True)  # ← 追加
+    final_plant_height_cm: Mapped[float | None] = mapped_column(Float, nullable=True)  
     note: Mapped[str | None] = mapped_column(String(256), nullable=True)
     created_at: Mapped[datetime] = mapped_column(
         DateTime(timezone=True), nullable=False, server_default=func.now()
