@@ -1097,3 +1097,571 @@ POST payload: {
 OK, created id: 59
 [2026/05/18 10:50:07.03] Finished 
  
+[2026/05/18 22:27:19.08] Starting fetch_weather 
+Fetching: https://api.open-meteo.com/v1/forecast?latitude=34.95&longitude=137.16&current=temperature_2m%2Crelative_humidity_2m%2Cweather_code%2Csunshine_duration&timezone=Asia%2FTokyo
+POST payload: {
+  "weather": "ê∞ÇÍ",
+  "temperature_c": 18.5,
+  "humidity_pct": 71,
+  "sunlight_hours": 0.0,
+  "note": "auto: open-meteo @ 34.95,137.16"
+}
+OK, created id: 60
+[2026/05/18 22:27:22.93] Finished 
+ 
+[2026/05/18 22:36:27.68] Starting fetch_weather 
+Fetching: https://api.open-meteo.com/v1/forecast?latitude=34.95&longitude=137.16&current=temperature_2m%2Crelative_humidity_2m%2Cweather_code%2Csunshine_duration&timezone=Asia%2FTokyo
+POST payload: {
+  "weather": "ê∞ÇÍ",
+  "temperature_c": 18.3,
+  "humidity_pct": 71,
+  "sunlight_hours": 0.0,
+  "note": "auto: open-meteo @ 34.95,137.16"
+}
+OK, created id: 61
+[2026/05/18 22:36:29.46] Finished 
+ 
+[2026/05/19 18:47:27.39] Starting fetch_weather 
+Fetching: https://api.open-meteo.com/v1/forecast?latitude=34.95&longitude=137.16&current=temperature_2m%2Crelative_humidity_2m%2Cweather_code%2Csunshine_duration&timezone=Asia%2FTokyo
+POST payload: {
+  "weather": "ê∞ÇÍ",
+  "temperature_c": 21.8,
+  "humidity_pct": 79,
+  "sunlight_hours": 0.0,
+  "note": "auto: open-meteo @ 34.95,137.16"
+}
+OK, created id: 62
+[2026/05/19 18:47:35.38] Finished 
+ 
+[2026/05/19 19:47:27.80] Starting fetch_weather 
+Fetching: https://api.open-meteo.com/v1/forecast?latitude=34.95&longitude=137.16&current=temperature_2m%2Crelative_humidity_2m%2Cweather_code%2Csunshine_duration&timezone=Asia%2FTokyo
+POST payload: {
+  "weather": "ê∞ÇÍ",
+  "temperature_c": 20.7,
+  "humidity_pct": 85,
+  "sunlight_hours": 0.0,
+  "note": "auto: open-meteo @ 34.95,137.16"
+}
+OK, created id: 63
+[2026/05/19 19:47:30.93] Finished 
+ 
+[2026/05/20  8:36:22.03] Starting fetch_weather 
+ERROR: <urlopen error [WinError 10061] ëŒè€ÇÃÉRÉìÉsÉÖÅ[É^Å[Ç…ÇÊÇ¡Çƒãëî€Ç≥ÇÍÇΩÇΩÇﬂÅAê⁄ë±Ç≈Ç´Ç‹ÇπÇÒÇ≈ÇµÇΩÅB>
+Fetching: https://api.open-meteo.com/v1/forecast?latitude=34.95&longitude=137.16&current=temperature_2m%2Crelative_humidity_2m%2Cweather_code%2Csunshine_duration&timezone=Asia%2FTokyo
+POST payload: {
+  "weather": "äTÇÀê∞ÇÍ",
+  "temperature_c": 22.4,
+  "humidity_pct": 79,
+  "sunlight_hours": 0.25,
+  "note": "auto: open-meteo @ 34.95,137.16"
+}
+[2026/05/20  8:36:29.63] Finished 
+ 
+[2026/05/20  8:47:27.69] Starting fetch_weather 
+Fetching: https://api.open-meteo.com/v1/forecast?latitude=34.95&longitude=137.16&current=temperature_2m%2Crelative_humidity_2m%2Cweather_code%2Csunshine_duration&timezone=Asia%2FTokyo
+POST payload: {
+  "weather": "äTÇÀê∞ÇÍ",
+  "temperature_c": 22.9,
+  "humidity_pct": 78,
+  "sunlight_hours": 0.25,
+  "note": "auto: open-meteo @ 34.95,137.16"
+}
+OK, created id: 64
+[2026/05/20  8:47:30.20] Finished 
+ 
+[2026/05/20 10:46:20.62] Starting fetch_weather 
+Fetching: https://api.open-meteo.com/v1/forecast?latitude=34.95&longitude=137.16&current=temperature_2m%2Crelative_humidity_2m%2Cweather_code%2Csunshine_duration&timezone=Asia%2FTokyo
+POST payload: {
+  "weather": "ê∞ÇÍ",
+  "temperature_c": 25.7,
+  "humidity_pct": 66,
+  "sunlight_hours": 0.25,
+  "note": "auto: open-meteo @ 34.95,137.16"
+}
+OK, created id: 65
+[2026/05/20 10:46:24.54] Finished 
+ 
+[2026/05/20 11:27:41.99] Starting fetch_weather 
+Fetching: https://api.open-meteo.com/v1/forecast?latitude=34.95&longitude=137.16&current=temperature_2m%2Crelative_humidity_2m%2Cweather_code%2Csunshine_duration&timezone=Asia%2FTokyo
+POST payload: {
+  "weather": "ê∞ÇÍ",
+  "temperature_c": 26.2,
+  "humidity_pct": 64,
+  "sunlight_hours": 0.25,
+  "note": "auto: open-meteo @ 34.95,137.16"
+}
+OK, created id: 66
+[2026/05/20 11:27:44.54] Finished 
+ 
+[2026/05/20 11:47:27.84] Starting fetch_weather 
+Fetching: https://api.open-meteo.com/v1/forecast?latitude=34.95&longitude=137.16&current=temperature_2m%2Crelative_humidity_2m%2Cweather_code%2Csunshine_duration&timezone=Asia%2FTokyo
+POST payload: {
+  "weather": "äTÇÀê∞ÇÍ",
+  "temperature_c": 26.5,
+  "humidity_pct": 62,
+  "sunlight_hours": 0.25,
+  "note": "auto: open-meteo @ 34.95,137.16"
+}
+OK, created id: 67
+[2026/05/20 11:47:30.64] Finished 
+ 
+[2026/05/20 12:47:27.70] Starting fetch_weather 
+Fetching: https://api.open-meteo.com/v1/forecast?latitude=34.95&longitude=137.16&current=temperature_2m%2Crelative_humidity_2m%2Cweather_code%2Csunshine_duration&timezone=Asia%2FTokyo
+POST payload: {
+  "weather": "ê∞ÇÍ",
+  "temperature_c": 27.0,
+  "humidity_pct": 60,
+  "sunlight_hours": 0.25,
+  "note": "auto: open-meteo @ 34.95,137.16"
+}
+OK, created id: 68
+[2026/05/20 12:47:29.33] Finished 
+ 
+[2026/05/21 10:32:02.82] Starting fetch_weather 
+Fetching: https://api.open-meteo.com/v1/forecast?latitude=34.95&longitude=137.16&current=temperature_2m%2Crelative_humidity_2m%2Cweather_code%2Csunshine_duration&timezone=Asia%2FTokyo
+POST payload: {
+  "weather": "é„Ç¢âJ",
+  "temperature_c": 22.6,
+  "humidity_pct": 97,
+  "sunlight_hours": 0.0,
+  "note": "auto: open-meteo @ 34.95,137.16"
+}
+OK, created id: 69
+[2026/05/21 10:32:06.32] Finished 
+ 
+[2026/05/21 10:47:27.67] Starting fetch_weather 
+Fetching: https://api.open-meteo.com/v1/forecast?latitude=34.95&longitude=137.16&current=temperature_2m%2Crelative_humidity_2m%2Cweather_code%2Csunshine_duration&timezone=Asia%2FTokyo
+POST payload: {
+  "weather": "é„Ç¢âJ",
+  "temperature_c": 22.6,
+  "humidity_pct": 97,
+  "sunlight_hours": 0.0,
+  "note": "auto: open-meteo @ 34.95,137.16"
+}
+OK, created id: 70
+[2026/05/21 10:47:29.22] Finished 
+ 
+[2026/05/21 11:32:02.92] Starting fetch_weather 
+Fetching: https://api.open-meteo.com/v1/forecast?latitude=34.95&longitude=137.16&current=temperature_2m%2Crelative_humidity_2m%2Cweather_code%2Csunshine_duration&timezone=Asia%2FTokyo
+POST payload: {
+  "weather": "é„Ç¢âJ",
+  "temperature_c": 22.8,
+  "humidity_pct": 97,
+  "sunlight_hours": 0.0,
+  "note": "auto: open-meteo @ 34.95,137.16"
+}
+OK, created id: 71
+[2026/05/21 11:32:04.94] Finished 
+ 
+[2026/05/21 11:47:27.75] Starting fetch_weather 
+Fetching: https://api.open-meteo.com/v1/forecast?latitude=34.95&longitude=137.16&current=temperature_2m%2Crelative_humidity_2m%2Cweather_code%2Csunshine_duration&timezone=Asia%2FTokyo
+POST payload: {
+  "weather": "é„Ç¢âJ",
+  "temperature_c": 22.8,
+  "humidity_pct": 97,
+  "sunlight_hours": 0.0,
+  "note": "auto: open-meteo @ 34.95,137.16"
+}
+OK, created id: 72
+[2026/05/21 11:47:29.90] Finished 
+ 
+[2026/05/21 12:32:02.84] Starting fetch_weather 
+Fetching: https://api.open-meteo.com/v1/forecast?latitude=34.95&longitude=137.16&current=temperature_2m%2Crelative_humidity_2m%2Cweather_code%2Csunshine_duration&timezone=Asia%2FTokyo
+POST payload: {
+  "weather": "é„Ç¢ñ∂âJ",
+  "temperature_c": 23.0,
+  "humidity_pct": 96,
+  "sunlight_hours": 0.0,
+  "note": "auto: open-meteo @ 34.95,137.16"
+}
+OK, created id: 73
+[2026/05/21 12:32:04.86] Finished 
+ 
+[2026/05/21 12:47:27.67] Starting fetch_weather 
+Fetching: https://api.open-meteo.com/v1/forecast?latitude=34.95&longitude=137.16&current=temperature_2m%2Crelative_humidity_2m%2Cweather_code%2Csunshine_duration&timezone=Asia%2FTokyo
+POST payload: {
+  "weather": "é„Ç¢ñ∂âJ",
+  "temperature_c": 23.1,
+  "humidity_pct": 96,
+  "sunlight_hours": 0.0,
+  "note": "auto: open-meteo @ 34.95,137.16"
+}
+OK, created id: 74
+[2026/05/21 12:47:29.25] Finished 
+ 
+[2026/05/21 13:32:02.87] Starting fetch_weather 
+Fetching: https://api.open-meteo.com/v1/forecast?latitude=34.95&longitude=137.16&current=temperature_2m%2Crelative_humidity_2m%2Cweather_code%2Csunshine_duration&timezone=Asia%2FTokyo
+POST payload: {
+  "weather": "àÍïîì‹ÇË",
+  "temperature_c": 23.5,
+  "humidity_pct": 94,
+  "sunlight_hours": 0.0,
+  "note": "auto: open-meteo @ 34.95,137.16"
+}
+OK, created id: 75
+[2026/05/21 13:32:04.54] Finished 
+ 
+[2026/05/21 13:47:27.70] Starting fetch_weather 
+Fetching: https://api.open-meteo.com/v1/forecast?latitude=34.95&longitude=137.16&current=temperature_2m%2Crelative_humidity_2m%2Cweather_code%2Csunshine_duration&timezone=Asia%2FTokyo
+POST payload: {
+  "weather": "äTÇÀê∞ÇÍ",
+  "temperature_c": 23.7,
+  "humidity_pct": 93,
+  "sunlight_hours": 0.0,
+  "note": "auto: open-meteo @ 34.95,137.16"
+}
+OK, created id: 76
+[2026/05/21 13:47:29.30] Finished 
+ 
+[2026/05/21 14:32:03.03] Starting fetch_weather 
+Fetching: https://api.open-meteo.com/v1/forecast?latitude=34.95&longitude=137.16&current=temperature_2m%2Crelative_humidity_2m%2Cweather_code%2Csunshine_duration&timezone=Asia%2FTokyo
+POST payload: {
+  "weather": "àÍïîì‹ÇË",
+  "temperature_c": 23.9,
+  "humidity_pct": 91,
+  "sunlight_hours": 0.0,
+  "note": "auto: open-meteo @ 34.95,137.16"
+}
+OK, created id: 77
+[2026/05/21 14:32:06.11] Finished 
+ 
+[2026/05/21 14:47:27.81] Starting fetch_weather 
+Fetching: https://api.open-meteo.com/v1/forecast?latitude=34.95&longitude=137.16&current=temperature_2m%2Crelative_humidity_2m%2Cweather_code%2Csunshine_duration&timezone=Asia%2FTokyo
+POST payload: {
+  "weather": "àÍïîì‹ÇË",
+  "temperature_c": 23.9,
+  "humidity_pct": 91,
+  "sunlight_hours": 0.0,
+  "note": "auto: open-meteo @ 34.95,137.16"
+}
+OK, created id: 78
+[2026/05/21 14:47:39.71] Finished 
+ 
+[2026/05/21 15:32:02.91] Starting fetch_weather 
+Fetching: https://api.open-meteo.com/v1/forecast?latitude=34.95&longitude=137.16&current=temperature_2m%2Crelative_humidity_2m%2Cweather_code%2Csunshine_duration&timezone=Asia%2FTokyo
+POST payload: {
+  "weather": "é„Ç¢ñ∂âJ",
+  "temperature_c": 23.9,
+  "humidity_pct": 92,
+  "sunlight_hours": 0.0,
+  "note": "auto: open-meteo @ 34.95,137.16"
+}
+OK, created id: 79
+[2026/05/21 15:32:05.13] Finished 
+ 
+[2026/05/21 15:47:27.71] Starting fetch_weather 
+Fetching: https://api.open-meteo.com/v1/forecast?latitude=34.95&longitude=137.16&current=temperature_2m%2Crelative_humidity_2m%2Cweather_code%2Csunshine_duration&timezone=Asia%2FTokyo
+POST payload: {
+  "weather": "ì‹ÇË",
+  "temperature_c": 23.7,
+  "humidity_pct": 96,
+  "sunlight_hours": 0.0,
+  "note": "auto: open-meteo @ 34.95,137.16"
+}
+OK, created id: 80
+[2026/05/21 15:47:29.64] Finished 
+ 
+[2026/05/22  0:25:36.80] Starting fetch_weather 
+Fetching: https://api.open-meteo.com/v1/forecast?latitude=34.95&longitude=137.16&current=temperature_2m%2Crelative_humidity_2m%2Cweather_code%2Csunshine_duration&timezone=Asia%2FTokyo
+Traceback (most recent call last):
+  File "C:\Users\Kkawa\AppData\Local\Programs\Python\Python314\Lib\urllib\request.py", line 1321, in do_open
+    h.request(req.get_method(), req.selector, req.data, headers,
+    ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+              encode_chunked=req.has_header('Transfer-encoding'))
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Kkawa\AppData\Local\Programs\Python\Python314\Lib\http\client.py", line 1358, in request
+    self._send_request(method, url, body, headers, encode_chunked)
+    ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Kkawa\AppData\Local\Programs\Python\Python314\Lib\http\client.py", line 1404, in _send_request
+    self.endheaders(body, encode_chunked=encode_chunked)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Kkawa\AppData\Local\Programs\Python\Python314\Lib\http\client.py", line 1353, in endheaders
+    self._send_output(message_body, encode_chunked=encode_chunked)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Kkawa\AppData\Local\Programs\Python\Python314\Lib\http\client.py", line 1113, in _send_output
+    self.send(msg)
+    ~~~~~~~~~^^^^^
+  File "C:\Users\Kkawa\AppData\Local\Programs\Python\Python314\Lib\http\client.py", line 1057, in send
+    self.connect()
+    ~~~~~~~~~~~~^^
+  File "C:\Users\Kkawa\AppData\Local\Programs\Python\Python314\Lib\http\client.py", line 1492, in connect
+    super().connect()
+    ~~~~~~~~~~~~~~~^^
+  File "C:\Users\Kkawa\AppData\Local\Programs\Python\Python314\Lib\http\client.py", line 1023, in connect
+    self.sock = self._create_connection(
+                ~~~~~~~~~~~~~~~~~~~~~~~^
+        (self.host,self.port), self.timeout, self.source_address)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Kkawa\AppData\Local\Programs\Python\Python314\Lib\socket.py", line 846, in create_connection
+    for res in getaddrinfo(host, port, 0, SOCK_STREAM):
+               ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Kkawa\AppData\Local\Programs\Python\Python314\Lib\socket.py", line 983, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+               ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+socket.gaierror: [Errno 11001] getaddrinfo failed
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\project\tomato-sensor\scripts\fetch_weather.py", line 92, in <module>
+    main()
+    ~~~~^^
+  File "C:\project\tomato-sensor\scripts\fetch_weather.py", line 68, in main
+    weather = fetch_weather(args.lat, args.lon)
+  File "C:\project\tomato-sensor\scripts\fetch_weather.py", line 45, in fetch_weather
+    with urllib.request.urlopen(url, timeout=15) as resp:
+         ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\Kkawa\AppData\Local\Programs\Python\Python314\Lib\urllib\request.py", line 187, in urlopen
+    return opener.open(url, data, timeout)
+           ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Kkawa\AppData\Local\Programs\Python\Python314\Lib\urllib\request.py", line 487, in open
+    response = self._open(req, data)
+  File "C:\Users\Kkawa\AppData\Local\Programs\Python\Python314\Lib\urllib\request.py", line 504, in _open
+    result = self._call_chain(self.handle_open, protocol, protocol +
+                              '_open', req)
+  File "C:\Users\Kkawa\AppData\Local\Programs\Python\Python314\Lib\urllib\request.py", line 464, in _call_chain
+    result = func(*args)
+  File "C:\Users\Kkawa\AppData\Local\Programs\Python\Python314\Lib\urllib\request.py", line 1369, in https_open
+    return self.do_open(http.client.HTTPSConnection, req,
+           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                        context=self._context)
+                        ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Kkawa\AppData\Local\Programs\Python\Python314\Lib\urllib\request.py", line 1324, in do_open
+    raise URLError(err)
+urllib.error.URLError: <urlopen error [Errno 11001] getaddrinfo failed>
+[2026/05/22  0:25:39.58] Finished 
+ 
+[2026/05/22  0:32:02.91] Starting fetch_weather 
+Fetching: https://api.open-meteo.com/v1/forecast?latitude=34.95&longitude=137.16&current=temperature_2m%2Crelative_humidity_2m%2Cweather_code%2Csunshine_duration&timezone=Asia%2FTokyo
+Traceback (most recent call last):
+  File "C:\Users\Kkawa\AppData\Local\Programs\Python\Python314\Lib\urllib\request.py", line 1321, in do_open
+    h.request(req.get_method(), req.selector, req.data, headers,
+    ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+              encode_chunked=req.has_header('Transfer-encoding'))
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Kkawa\AppData\Local\Programs\Python\Python314\Lib\http\client.py", line 1358, in request
+    self._send_request(method, url, body, headers, encode_chunked)
+    ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Kkawa\AppData\Local\Programs\Python\Python314\Lib\http\client.py", line 1404, in _send_request
+    self.endheaders(body, encode_chunked=encode_chunked)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Kkawa\AppData\Local\Programs\Python\Python314\Lib\http\client.py", line 1353, in endheaders
+    self._send_output(message_body, encode_chunked=encode_chunked)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Kkawa\AppData\Local\Programs\Python\Python314\Lib\http\client.py", line 1113, in _send_output
+    self.send(msg)
+    ~~~~~~~~~^^^^^
+  File "C:\Users\Kkawa\AppData\Local\Programs\Python\Python314\Lib\http\client.py", line 1057, in send
+    self.connect()
+    ~~~~~~~~~~~~^^
+  File "C:\Users\Kkawa\AppData\Local\Programs\Python\Python314\Lib\http\client.py", line 1492, in connect
+    super().connect()
+    ~~~~~~~~~~~~~~~^^
+  File "C:\Users\Kkawa\AppData\Local\Programs\Python\Python314\Lib\http\client.py", line 1023, in connect
+    self.sock = self._create_connection(
+                ~~~~~~~~~~~~~~~~~~~~~~~^
+        (self.host,self.port), self.timeout, self.source_address)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Kkawa\AppData\Local\Programs\Python\Python314\Lib\socket.py", line 846, in create_connection
+    for res in getaddrinfo(host, port, 0, SOCK_STREAM):
+               ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Kkawa\AppData\Local\Programs\Python\Python314\Lib\socket.py", line 983, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+               ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+socket.gaierror: [Errno 11001] getaddrinfo failed
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\project\tomato-sensor\scripts\fetch_weather.py", line 92, in <module>
+    main()
+    ~~~~^^
+  File "C:\project\tomato-sensor\scripts\fetch_weather.py", line 68, in main
+    weather = fetch_weather(args.lat, args.lon)
+  File "C:\project\tomato-sensor\scripts\fetch_weather.py", line 45, in fetch_weather
+    with urllib.request.urlopen(url, timeout=15) as resp:
+         ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\Kkawa\AppData\Local\Programs\Python\Python314\Lib\urllib\request.py", line 187, in urlopen
+    return opener.open(url, data, timeout)
+           ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Kkawa\AppData\Local\Programs\Python\Python314\Lib\urllib\request.py", line 487, in open
+    response = self._open(req, data)
+  File "C:\Users\Kkawa\AppData\Local\Programs\Python\Python314\Lib\urllib\request.py", line 504, in _open
+    result = self._call_chain(self.handle_open, protocol, protocol +
+                              '_open', req)
+  File "C:\Users\Kkawa\AppData\Local\Programs\Python\Python314\Lib\urllib\request.py", line 464, in _call_chain
+    result = func(*args)
+  File "C:\Users\Kkawa\AppData\Local\Programs\Python\Python314\Lib\urllib\request.py", line 1369, in https_open
+    return self.do_open(http.client.HTTPSConnection, req,
+           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                        context=self._context)
+                        ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Kkawa\AppData\Local\Programs\Python\Python314\Lib\urllib\request.py", line 1324, in do_open
+    raise URLError(err)
+urllib.error.URLError: <urlopen error [Errno 11001] getaddrinfo failed>
+[2026/05/22  0:32:03.35] Finished 
+ 
+[2026/05/22  0:47:27.71] Starting fetch_weather 
+Fetching: https://api.open-meteo.com/v1/forecast?latitude=34.95&longitude=137.16&current=temperature_2m%2Crelative_humidity_2m%2Cweather_code%2Csunshine_duration&timezone=Asia%2FTokyo
+Traceback (most recent call last):
+  File "C:\Users\Kkawa\AppData\Local\Programs\Python\Python314\Lib\urllib\request.py", line 1321, in do_open
+    h.request(req.get_method(), req.selector, req.data, headers,
+    ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+              encode_chunked=req.has_header('Transfer-encoding'))
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Kkawa\AppData\Local\Programs\Python\Python314\Lib\http\client.py", line 1358, in request
+    self._send_request(method, url, body, headers, encode_chunked)
+    ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Kkawa\AppData\Local\Programs\Python\Python314\Lib\http\client.py", line 1404, in _send_request
+    self.endheaders(body, encode_chunked=encode_chunked)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Kkawa\AppData\Local\Programs\Python\Python314\Lib\http\client.py", line 1353, in endheaders
+    self._send_output(message_body, encode_chunked=encode_chunked)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Kkawa\AppData\Local\Programs\Python\Python314\Lib\http\client.py", line 1113, in _send_output
+    self.send(msg)
+    ~~~~~~~~~^^^^^
+  File "C:\Users\Kkawa\AppData\Local\Programs\Python\Python314\Lib\http\client.py", line 1057, in send
+    self.connect()
+    ~~~~~~~~~~~~^^
+  File "C:\Users\Kkawa\AppData\Local\Programs\Python\Python314\Lib\http\client.py", line 1492, in connect
+    super().connect()
+    ~~~~~~~~~~~~~~~^^
+  File "C:\Users\Kkawa\AppData\Local\Programs\Python\Python314\Lib\http\client.py", line 1023, in connect
+    self.sock = self._create_connection(
+                ~~~~~~~~~~~~~~~~~~~~~~~^
+        (self.host,self.port), self.timeout, self.source_address)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Kkawa\AppData\Local\Programs\Python\Python314\Lib\socket.py", line 846, in create_connection
+    for res in getaddrinfo(host, port, 0, SOCK_STREAM):
+               ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Kkawa\AppData\Local\Programs\Python\Python314\Lib\socket.py", line 983, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+               ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+socket.gaierror: [Errno 11001] getaddrinfo failed
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\project\tomato-sensor\scripts\fetch_weather.py", line 92, in <module>
+    main()
+    ~~~~^^
+  File "C:\project\tomato-sensor\scripts\fetch_weather.py", line 68, in main
+    weather = fetch_weather(args.lat, args.lon)
+  File "C:\project\tomato-sensor\scripts\fetch_weather.py", line 45, in fetch_weather
+    with urllib.request.urlopen(url, timeout=15) as resp:
+         ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\Kkawa\AppData\Local\Programs\Python\Python314\Lib\urllib\request.py", line 187, in urlopen
+    return opener.open(url, data, timeout)
+           ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Kkawa\AppData\Local\Programs\Python\Python314\Lib\urllib\request.py", line 487, in open
+    response = self._open(req, data)
+  File "C:\Users\Kkawa\AppData\Local\Programs\Python\Python314\Lib\urllib\request.py", line 504, in _open
+    result = self._call_chain(self.handle_open, protocol, protocol +
+                              '_open', req)
+  File "C:\Users\Kkawa\AppData\Local\Programs\Python\Python314\Lib\urllib\request.py", line 464, in _call_chain
+    result = func(*args)
+  File "C:\Users\Kkawa\AppData\Local\Programs\Python\Python314\Lib\urllib\request.py", line 1369, in https_open
+    return self.do_open(http.client.HTTPSConnection, req,
+           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                        context=self._context)
+                        ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Kkawa\AppData\Local\Programs\Python\Python314\Lib\urllib\request.py", line 1324, in do_open
+    raise URLError(err)
+urllib.error.URLError: <urlopen error [Errno 11001] getaddrinfo failed>
+[2026/05/22  0:47:28.14] Finished 
+ 
+[2026/05/22  1:25:36.93] Starting fetch_weather 
+Fetching: https://api.open-meteo.com/v1/forecast?latitude=34.95&longitude=137.16&current=temperature_2m%2Crelative_humidity_2m%2Cweather_code%2Csunshine_duration&timezone=Asia%2FTokyo
+POST payload: {
+  "weather": "àÍïîì‹ÇË",
+  "temperature_c": 21.5,
+  "humidity_pct": 98,
+  "sunlight_hours": 0.0,
+  "note": "auto: open-meteo @ 34.95,137.16"
+}
+OK, created id: 81
+[2026/05/22  1:25:44.88] Finished 
+ 
+[2026/05/22  1:32:02.87] Starting fetch_weather 
+Fetching: https://api.open-meteo.com/v1/forecast?latitude=34.95&longitude=137.16&current=temperature_2m%2Crelative_humidity_2m%2Cweather_code%2Csunshine_duration&timezone=Asia%2FTokyo
+POST payload: {
+  "weather": "àÍïîì‹ÇË",
+  "temperature_c": 21.4,
+  "humidity_pct": 98,
+  "sunlight_hours": 0.0,
+  "note": "auto: open-meteo @ 34.95,137.16"
+}
+OK, created id: 82
+[2026/05/22  1:32:04.74] Finished 
+ 
+[2026/05/22  3:14:11.13] Starting fetch_weather 
+Fetching: https://api.open-meteo.com/v1/forecast?latitude=34.95&longitude=137.16&current=temperature_2m%2Crelative_humidity_2m%2Cweather_code%2Csunshine_duration&timezone=Asia%2FTokyo
+Traceback (most recent call last):
+  File "C:\Users\Kkawa\AppData\Local\Programs\Python\Python314\Lib\urllib\request.py", line 1321, in do_open
+    h.request(req.get_method(), req.selector, req.data, headers,
+    ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+              encode_chunked=req.has_header('Transfer-encoding'))
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Kkawa\AppData\Local\Programs\Python\Python314\Lib\http\client.py", line 1358, in request
+    self._send_request(method, url, body, headers, encode_chunked)
+    ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Kkawa\AppData\Local\Programs\Python\Python314\Lib\http\client.py", line 1404, in _send_request
+    self.endheaders(body, encode_chunked=encode_chunked)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Kkawa\AppData\Local\Programs\Python\Python314\Lib\http\client.py", line 1353, in endheaders
+    self._send_output(message_body, encode_chunked=encode_chunked)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Kkawa\AppData\Local\Programs\Python\Python314\Lib\http\client.py", line 1113, in _send_output
+    self.send(msg)
+    ~~~~~~~~~^^^^^
+  File "C:\Users\Kkawa\AppData\Local\Programs\Python\Python314\Lib\http\client.py", line 1057, in send
+    self.connect()
+    ~~~~~~~~~~~~^^
+  File "C:\Users\Kkawa\AppData\Local\Programs\Python\Python314\Lib\http\client.py", line 1492, in connect
+    super().connect()
+    ~~~~~~~~~~~~~~~^^
+  File "C:\Users\Kkawa\AppData\Local\Programs\Python\Python314\Lib\http\client.py", line 1023, in connect
+    self.sock = self._create_connection(
+                ~~~~~~~~~~~~~~~~~~~~~~~^
+        (self.host,self.port), self.timeout, self.source_address)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Kkawa\AppData\Local\Programs\Python\Python314\Lib\socket.py", line 846, in create_connection
+    for res in getaddrinfo(host, port, 0, SOCK_STREAM):
+               ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Kkawa\AppData\Local\Programs\Python\Python314\Lib\socket.py", line 983, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+               ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+socket.gaierror: [Errno 11001] getaddrinfo failed
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\project\tomato-sensor\scripts\fetch_weather.py", line 92, in <module>
+    main()
+    ~~~~^^
+  File "C:\project\tomato-sensor\scripts\fetch_weather.py", line 68, in main
+    weather = fetch_weather(args.lat, args.lon)
+  File "C:\project\tomato-sensor\scripts\fetch_weather.py", line 45, in fetch_weather
+    with urllib.request.urlopen(url, timeout=15) as resp:
+         ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\Kkawa\AppData\Local\Programs\Python\Python314\Lib\urllib\request.py", line 187, in urlopen
+    return opener.open(url, data, timeout)
+           ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Kkawa\AppData\Local\Programs\Python\Python314\Lib\urllib\request.py", line 487, in open
+    response = self._open(req, data)
+  File "C:\Users\Kkawa\AppData\Local\Programs\Python\Python314\Lib\urllib\request.py", line 504, in _open
+    result = self._call_chain(self.handle_open, protocol, protocol +
+                              '_open', req)
+  File "C:\Users\Kkawa\AppData\Local\Programs\Python\Python314\Lib\urllib\request.py", line 464, in _call_chain
+    result = func(*args)
+  File "C:\Users\Kkawa\AppData\Local\Programs\Python\Python314\Lib\urllib\request.py", line 1369, in https_open
+    return self.do_open(http.client.HTTPSConnection, req,
+           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                        context=self._context)
+                        ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Kkawa\AppData\Local\Programs\Python\Python314\Lib\urllib\request.py", line 1324, in do_open
+    raise URLError(err)
+urllib.error.URLError: <urlopen error [Errno 11001] getaddrinfo failed>
+[2026/05/22  3:14:12.10] Finished 
+ 
