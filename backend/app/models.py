@@ -83,6 +83,28 @@ class Fruit(Base):
         DateTime(timezone=True), nullable=False, server_default=func.now()
     )
     
+class Measurement(Base):
+    """1回の測定 = 1株を3本のセンサーで測り、その平均を記録する"""
+    __tablename__ = "measurements"
+    id: Mapped[int] = mapped_column(Integer, primary_key=True, autoincrement=True)
+    plant_id: Mapped[int] = mapped_column(
+        ForeignKey("plants.id", ondelete="CASCADE"), nullable=False, index=True
+    )
+    measured_at: Mapped[datetime] = mapped_column(
+        DateTime(timezone=True), nullable=False, server_default=func.now(), index=True
+    )
+    # 元の3本それぞれの値 (後から見直せるように残す)
+    raw_0: Mapped[int | None] = mapped_column(Integer, nullable=True)
+    raw_1: Mapped[int | None] = mapped_column(Integer, nullable=True)
+    raw_2: Mapped[int | None] = mapped_column(Integer, nullable=True)
+    pct_0: Mapped[float | None] = mapped_column(Float, nullable=True)
+    pct_1: Mapped[float | None] = mapped_column(Float, nullable=True)
+    pct_2: Mapped[float | None] = mapped_column(Float, nullable=True)
+    # 3本の平均 = その株の代表値
+    avg_pct: Mapped[float] = mapped_column(Float, nullable=False)
+    note: Mapped[str | None] = mapped_column(String(256), nullable=True)
+
+
 class Image(Base):
     __tablename__ = "images"
     id: Mapped[int] = mapped_column(Integer, primary_key=True, autoincrement=True)

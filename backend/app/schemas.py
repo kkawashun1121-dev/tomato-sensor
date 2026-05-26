@@ -28,6 +28,36 @@ class ReadingOut(BaseModel):
     recorded_at: datetime
     model_config = ConfigDict(from_attributes=True)
     
+class MeasurementSampleIn(BaseModel):
+    """記録時に送る、センサー1本分の値"""
+    sensor_index: int = Field(..., ge=0, le=2)
+    raw: Optional[int] = Field(None, ge=0, le=4095)
+    moisture_pct: float = Field(..., ge=0, le=100)
+
+
+class MeasurementCreate(BaseModel):
+    """1株ぶんの測定を記録 (3本のセンサーの値を送る)"""
+    plant_id: int = Field(..., ge=1)
+    measured_at: Optional[datetime] = None
+    samples: list[MeasurementSampleIn] = Field(..., min_length=1, max_length=3)
+    note: Optional[str] = Field(None, max_length=256)
+
+
+class MeasurementOut(BaseModel):
+    id: int
+    plant_id: int
+    measured_at: datetime
+    raw_0: Optional[int]
+    raw_1: Optional[int]
+    raw_2: Optional[int]
+    pct_0: Optional[float]
+    pct_1: Optional[float]
+    pct_2: Optional[float]
+    avg_pct: float
+    note: Optional[str]
+    model_config = ConfigDict(from_attributes=True)
+
+
 class EnvironmentCreate(BaseModel):
     """環境データ登録用 (手入力 or 外部API取得)"""
     recorded_at: Optional[datetime] = None

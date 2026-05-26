@@ -2,7 +2,7 @@
 ## routerのモト 
 
 from fastapi.staticfiles import StaticFiles
-from .routers import readings, environments, plants, waterings, harvests, fruits, images
+from .routers import readings, environments, plants, waterings, harvests, fruits, images, measurements
 from contextlib import asynccontextmanager
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
@@ -24,7 +24,8 @@ app = FastAPI(
 )
 
 app.include_router(readings.router)
-app.include_router(environments.router)  
+app.include_router(measurements.router)
+app.include_router(environments.router)
 app.include_router(plants.router)
 app.include_router(waterings.router)
 app.include_router(harvests.router)

@@ -42,6 +42,52 @@ def delete_reading(db: Session, reading_id: int) -> bool:
     return True
 
 
+# ============ Measurement (1株を3本で測った1回分) ============
+
+def list_measurements(db: Session, plant_id: int | None = None, limit: int = 200):
+    stmt = select(models.Measurement)
+    if plant_id is not None:
+        stmt = stmt.where(models.Measurement.plant_id == plant_id)
+    stmt = stmt.order_by(models.Measurement.measured_at.desc()).limit(limit)
+    return db.execute(stmt).scalars().all()
+
+
+def create_measurement(db: Session, payload):
+    plant = db.get(models.Plant, payload.plant_id)
+    if plant is None:
+        return None
+    raws = [None, None, None]
+    pcts = [None, None, None]
+    # 送られてきた3本を順番に 0/1/2 へ格納
+    for i, sample in enumerate(payload.samples[:3]):
+        raws[i] = sample.raw
+        pcts[i] = sample.moisture_pct
+    present = [p for p in pcts if p is not None]
+    avg = round(sum(present) / len(present), 1) if present else 0.0
+    row = models.Measurement(
+        plant_id=payload.plant_id,
+        raw_0=raws[0], raw_1=raws[1], raw_2=raws[2],
+        pct_0=pcts[0], pct_1=pcts[1], pct_2=pcts[2],
+        avg_pct=avg,
+        note=payload.note,
+    )
+    if payload.measured_at is not None:
+        row.measured_at = payload.measured_at
+    db.add(row)
+    db.commit()
+    db.refresh(row)
+    return row
+
+
+def delete_measurement(db: Session, measurement_id: int) -> bool:
+    row = db.get(models.Measurement, measurement_id)
+    if row is None:
+        return False
+    db.delete(row)
+    db.commit()
+    return True
+
+
 # ============ EnvironmentReading (天候) ============
 
 def list_environments(db: Session, limit: int = 100):
