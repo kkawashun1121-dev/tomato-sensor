@@ -173,11 +173,11 @@ npm run dev
 | センサー | VCC | GND | AOUT |
 |---|---|---|---|
 | Sensor 0 | 3V3 | GND | GPIO 34 (← 1kΩ) |
-| Sensor 1 | 3V3 | GND | GPIO 35 (← 1kΩ) |
+| Sensor 1 | 3V3 | GND | GPIO 33 (← 1kΩ) |
 | Sensor 2 | 3V3 | GND | GPIO 32 (← 1kΩ) |
 
 > **AOUT と GPIO の間に 1kΩ の保護抵抗を直列に入れる。** センサー故障時にマイコンの ADC が壊れるのを防ぐため (実際に1度壊した教訓)。
-> ADC2 系のピンは WiFi と競合するので NG。GPIO 34/35/32 は ADC1 系。
+> ADC2 系のピンは WiFi と競合するので NG。GPIO 34/33/32 は ADC1 系。(旧 GPIO35 が破損したため Sensor 1 を GPIO33 に変更)
 
 ### 外部 API スクリプト
 
