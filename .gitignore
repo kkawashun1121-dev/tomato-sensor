@@ -11,6 +11,8 @@ dist/
 # 秘密情報 (絶対に GitHub に上げない)
 .env
 firmware/config.h
+firmware/**/config.h
+config.h
 
 # DB / 画像 (Docker やアップロードで作られる)
 *.sqlite
