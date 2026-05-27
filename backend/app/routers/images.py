@@ -5,14 +5,9 @@ from datetime import datetime
 from pathlib import Path
 from fastapi import APIRouter, Depends, File, Form, UploadFile, HTTPException
 from sqlalchemy.orm import Session
-from PIL import Image as PILImage
-import pillow_heif
 from .. import crud, schemas
 from ..config import settings
 from ..database import get_db
-
-# iPhone の HEIC を PIL で開けるようにする
-pillow_heif.register_heif_opener()
 
 router = APIRouter(prefix="/api/images", tags=["images"])
 
@@ -52,15 +47,34 @@ async def upload_image(
     contents = await file.read()
     content_type = file.content_type
 
-    # HEIC/HEIF はブラウザで表示できないため JPEG に変換する
+    # HEIC/HEIF はブラウザで表示できないため JPEG に変換する。
+    # 変換ライブラリ(pillow/pillow-heif)が無くてもアプリ全体は起動できるよう、
+    # ここで初めて import する(遅延 import)。
     if ext in HEIC_EXTENSIONS:
         try:
-            img = PILImage.open(io.BytesIO(contents)).convert("RGB")
+            import pillow_heif
+        except ModuleNotFoundError:
+            raise HTTPException(
+                status_code=400,
+                detail="HEIC変換ライブラリ(pillow-heif)が未インストールです。"
+                       "backend を再ビルドするか、JPEG/PNG でアップロードしてください。",
+            )
+        try:
+            # read_heif は libheif で直接デコードするため、PIL の形式判定に依存しない
+            heif_file = pillow_heif.read_heif(io.BytesIO(contents))
+            img = heif_file.to_pillow().convert("RGB")
             buf = io.BytesIO()
             img.save(buf, format="JPEG", quality=90)
             contents = buf.getvalue()
         except Exception as e:
-            raise HTTPException(status_code=400, detail=f"HEIC の変換に失敗しました: {e}")
+            import traceback
+            print("=== HEIC変換エラー ===", flush=True)
+            traceback.print_exc()
+            raise HTTPException(
+                status_code=400,
+                detail=f"HEIC の変換に失敗しました: {type(e).__name__}: {e}。"
+                       f"うまくいかない場合は iPhone の設定→カメラ→フォーマットを「互換性優先」にするか、JPEG で保存してください。",
+            )
         ext = ".jpg"
         content_type = "image/jpeg"
 
