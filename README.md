@@ -87,6 +87,20 @@
 
 ---
 
+## 主な部品
+
+<p>
+  <img src="docs/images/esp32.png" width="170" alt="ESP32 マイコン">
+  <img src="docs/images/soil_moisture_sensor.png" width="190" alt="静電容量式土壌水分センサー">
+  <img src="docs/images/brix_meter.png" width="120" alt="糖度計 KTD-01">
+</p>
+
+左から、ESP32(マイコン)、静電容量式土壌水分センサー、糖度計 (KTD-01)。
+
+> ※ 上記は使用部品の参考写真です。実機の配線・運用中・ダッシュボードの写真は今後 `docs/images/` に追加予定。
+
+---
+
 ## システム構成 (データの流れ)
 
 ```
