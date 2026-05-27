@@ -1,10 +1,40 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useFruits } from '../hooks/useFruits'
 import { usePlants } from '../hooks/usePlants'
+
+// プランター(株)別にグループ化する。株は登録順(id昇順)、実も登録順(id昇順)。
+function groupByPlant(fruits, plants) {
+  const groups = new Map()
+  for (const f of [...fruits].sort((a, b) => a.id - b.id)) {
+    const key = f.plant_id ?? 'none'
+    if (!groups.has(key)) groups.set(key, [])
+    groups.get(key).push(f)
+  }
+  const sortedKeys = [...groups.keys()].sort((a, b) => {
+    if (a === 'none') return 1
+    if (b === 'none') return -1
+    return a - b
+  })
+  return sortedKeys.map((key) => ({
+    plant: plants.find((p) => p.id === key) || null,
+    items: groups.get(key),
+  }))
+}
 
 export default function FruitManager() {
   const { fruits, error, reload } = useFruits()
   const { plants } = usePlants()
+  const [sortMode, setSortMode] = useState('new')
+
+  const renderRow = (f) => (
+    <FruitRow
+      key={f.id}
+      fruit={f}
+      plants={plants}
+      onUpdated={reload}
+      onDeleted={reload}
+    />
+  )
 
   return (
     <div style={panelStyle}>
@@ -14,21 +44,38 @@ export default function FruitManager() {
       <FruitForm plants={plants} onCreated={reload} />
 
       <div style={{ marginTop: 16 }}>
-        <h3 style={{ fontSize: 16, color: '#666' }}>登録済みの実 ({fruits.length})</h3>
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: 8 }}>
+          <h3 style={{ fontSize: 16, color: '#666', margin: 0 }}>登録済みの実 ({fruits.length})</h3>
+          <label style={{ fontSize: 13, color: '#666' }}>
+            並び替え:{' '}
+            <select value={sortMode} onChange={(e) => setSortMode(e.target.value)} style={inputStyle}>
+              <option value="new">登録順（新しい順）</option>
+              <option value="old">登録順（古い順）</option>
+              <option value="plant">プランター（株）別</option>
+            </select>
+          </label>
+        </div>
+
         {fruits.length === 0 ? (
-          <p style={{ color: '#999' }}>
+          <p style={{ color: '#999', marginTop: 12 }}>
             まだ実がありません。実は「花が咲いた瞬間に1つずつ登録」してから、収穫時に詳細を追記する流れです。
           </p>
-        ) : (
-          fruits.map((f) => (
-            <FruitRow
-              key={f.id}
-              fruit={f}
-              plants={plants}
-              onUpdated={reload}
-              onDeleted={reload}
-            />
+        ) : sortMode === 'plant' ? (
+          groupByPlant(fruits, plants).map(({ plant, items }) => (
+            <div key={plant ? plant.id : 'none'} style={{ marginTop: 16 }}>
+              <div style={plantHeaderStyle}>
+                🪴 {plant ? `#${plant.id} ${plant.variety}` : 'プランター未設定'}
+                <span style={{ color: '#999', fontWeight: 'normal', marginLeft: 8, fontSize: 12 }}>
+                  ({items.length})
+                </span>
+              </div>
+              {items.map(renderRow)}
+            </div>
           ))
+        ) : (
+          [...fruits]
+            .sort((a, b) => (sortMode === 'old' ? a.id - b.id : b.id - a.id))
+            .map(renderRow)
         )}
       </div>
     </div>
@@ -156,6 +203,8 @@ function FruitRow({ fruit, plants, onUpdated, onDeleted }) {
 
       <SunlightDisplay fruit={fruit} />
 
+      <FruitImages fruitId={fruit.id} />
+
       {expanded && <FruitUpdateForm fruit={fruit} onUpdated={onUpdated} />}
     </div>
   )
@@ -212,6 +261,139 @@ function SunlightDisplay({ fruit }) {
           <span style={{ marginLeft: 12, fontSize: 12, color: '#999' }}>
             ({data.flowering_date} 〜 {data.until} / {data.days} 日間)
           </span>
+        </div>
+      )}
+    </div>
+  )
+}
+
+function FruitImages({ fruitId }) {
+  const [images, setImages] = useState([])
+  const [file, setFile] = useState(null)
+  const [submitting, setSubmitting] = useState(false)
+  const [msg, setMsg] = useState(null)
+
+  const reload = () => {
+    fetch(`/api/images?fruit_id=${fruitId}`)
+      .then((res) => {
+        if (!res.ok) throw new Error(`HTTP ${res.status}`)
+        return res.json()
+      })
+      .then(setImages)
+      .catch((err) => setMsg(`エラー: ${err.message}`))
+  }
+
+  useEffect(() => {
+    reload()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [fruitId])
+
+  const handleUpload = async (e) => {
+    e.preventDefault()
+    if (!file) {
+      setMsg('ファイルを選択してください')
+      return
+    }
+    setSubmitting(true)
+    setMsg(null)
+    const fd = new FormData()
+    fd.append('file', file)
+    fd.append('fruit_id', fruitId)
+    try {
+      const res = await fetch('/api/images', { method: 'POST', body: fd })
+      if (!res.ok) throw new Error(`HTTP ${res.status}`)
+      setFile(null)
+      e.target.reset()
+      reload()
+    } catch (err) {
+      setMsg(`エラー: ${err.message}`)
+    } finally {
+      setSubmitting(false)
+    }
+  }
+
+  const handleDelete = async (id) => {
+    if (!window.confirm('この写真を削除しますか?')) return
+    try {
+      const res = await fetch(`/api/images/${id}`, { method: 'DELETE' })
+      if (!res.ok) throw new Error(`HTTP ${res.status}`)
+      reload()
+    } catch (err) {
+      alert(`エラー: ${err.message}`)
+    }
+  }
+
+  return (
+    <div
+      style={{
+        marginTop: 12,
+        padding: 12,
+        background: '#f7faff',
+        borderRadius: 4,
+        borderLeft: '3px solid #3498db',
+      }}
+    >
+      <strong style={{ fontSize: 13 }}>📷 この実の写真 ({images.length})</strong>
+      <form
+        onSubmit={handleUpload}
+        style={{ display: 'flex', alignItems: 'center', gap: 8, flexWrap: 'wrap', marginTop: 8 }}
+      >
+        <input
+          type="file"
+          accept="image/*"
+          onChange={(e) => setFile(e.target.files[0])}
+          style={{ fontSize: 13 }}
+        />
+        <button type="submit" disabled={submitting} style={smallBtnStyle}>
+          {submitting ? '追加中...' : '+ 写真を追加'}
+        </button>
+        {msg && (
+          <span style={{ fontSize: 12, color: msg.startsWith('エラー') ? '#e74c3c' : '#27ae60' }}>
+            {msg}
+          </span>
+        )}
+      </form>
+      {images.length > 0 && (
+        <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', marginTop: 8 }}>
+          {images.map((img) => (
+            <div key={img.id} style={{ position: 'relative' }}>
+              <a href={`/static/images/${img.filename}`} target="_blank" rel="noreferrer">
+                <img
+                  src={`/static/images/${img.filename}`}
+                  alt={img.description || ''}
+                  style={{
+                    width: 90,
+                    height: 90,
+                    objectFit: 'cover',
+                    borderRadius: 4,
+                    display: 'block',
+                    border: '1px solid #ddd',
+                  }}
+                />
+              </a>
+              <button
+                onClick={() => handleDelete(img.id)}
+                title="削除"
+                style={{
+                  position: 'absolute',
+                  top: 2,
+                  right: 2,
+                  background: 'rgba(231,76,60,0.9)',
+                  color: '#fff',
+                  border: 'none',
+                  borderRadius: '50%',
+                  width: 20,
+                  height: 20,
+                  cursor: 'pointer',
+                  fontSize: 12,
+                  lineHeight: '18px',
+                  padding: 0,
+                }}
+              >
+                ×
+              </button>
+            </div>
+          ))}
         </div>
       )}
     </div>
@@ -426,4 +608,12 @@ const fruitRowStyle = {
   border: '1px solid #eee',
   borderRadius: 4,
   marginBottom: 12,
+}
+const plantHeaderStyle = {
+  fontWeight: 'bold',
+  fontSize: 14,
+  color: '#27ae60',
+  padding: '6px 0',
+  borderBottom: '2px solid #eef7f0',
+  marginBottom: 8,
 }
