@@ -14,7 +14,7 @@
 #include "config.h"
 
 // センサーの GPIO ピン (ADC1: WiFi と併用可能)
-const int SENSOR_PINS[3] = {34, 35, 32};
+const int SENSOR_PINS[3] = {34, 33, 32};
 
 // 1 回の測定で何回サンプリングして平均するか
 const int SAMPLE_COUNT = 16;
