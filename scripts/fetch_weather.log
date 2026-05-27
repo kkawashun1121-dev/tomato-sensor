@@ -2025,3 +2025,87 @@ POST payload: {
 OK, created id: 94
 [2026/05/26 16:36:29.25] Finished 
  
+[2026/05/26 17:05:00.85] Starting fetch_weather 
+Fetching: https://api.open-meteo.com/v1/forecast?latitude=34.95&longitude=137.16&current=temperature_2m%2Crelative_humidity_2m%2Cweather_code%2Csunshine_duration&timezone=Asia%2FTokyo
+POST payload: {
+  "weather": "ê∞ÇÍ",
+  "temperature_c": 24.5,
+  "humidity_pct": 65,
+  "sunlight_hours": 0.25,
+  "note": "auto: open-meteo @ 34.95,137.16"
+}
+OK, created id: 95
+[2026/05/26 17:05:02.62] Finished 
+ 
+[2026/05/26 17:14:44.11] Starting fetch_weather 
+Fetching: https://api.open-meteo.com/v1/forecast?latitude=34.95&longitude=137.16&current=temperature_2m%2Crelative_humidity_2m%2Cweather_code%2Csunshine_duration&timezone=Asia%2FTokyo
+POST payload: {
+  "weather": "ê∞ÇÍ",
+  "temperature_c": 24.5,
+  "humidity_pct": 65,
+  "sunlight_hours": 0.25,
+  "note": "auto: open-meteo @ 34.95,137.16"
+}
+OK, created id: 96
+[2026/05/26 17:14:46.68] Finished 
+ 
+[2026/05/27  3:14:36.39] Starting fetch_weather 
+ERROR: timed out
+Fetching: https://api.open-meteo.com/v1/forecast?latitude=34.95&longitude=137.16&current=temperature_2m%2Crelative_humidity_2m%2Cweather_code%2Csunshine_duration&timezone=Asia%2FTokyo
+POST payload: {
+  "weather": "ì‹ÇË",
+  "temperature_c": 18.3,
+  "humidity_pct": 92,
+  "sunlight_hours": 0.0,
+  "note": "auto: open-meteo @ 34.95,137.16"
+}
+[2026/05/27  3:14:55.45] Finished 
+ 
+[2026/05/27  4:44:28.52] Starting fetch_weather 
+ERROR: timed out
+Fetching: https://api.open-meteo.com/v1/forecast?latitude=34.95&longitude=137.16&current=temperature_2m%2Crelative_humidity_2m%2Cweather_code%2Csunshine_duration&timezone=Asia%2FTokyo
+POST payload: {
+  "weather": "àÍïîì‹ÇË",
+  "temperature_c": 18.4,
+  "humidity_pct": 91,
+  "sunlight_hours": 0.0,
+  "note": "auto: open-meteo @ 34.95,137.16"
+}
+[2026/05/27  4:44:50.19] Finished 
+ 
+[2026/05/27  5:46:32.04] Starting fetch_weather 
+ERROR: timed out
+Fetching: https://api.open-meteo.com/v1/forecast?latitude=34.95&longitude=137.16&current=temperature_2m%2Crelative_humidity_2m%2Cweather_code%2Csunshine_duration&timezone=Asia%2FTokyo
+POST payload: {
+  "weather": "àÍïîì‹ÇË",
+  "temperature_c": 18.6,
+  "humidity_pct": 91,
+  "sunlight_hours": 0.0001527777777777778,
+  "note": "auto: open-meteo @ 34.95,137.16"
+}
+[2026/05/27  5:47:15.69] Finished 
+ 
+[2026/05/27 11:27:13.69] Starting fetch_weather 
+Fetching: https://api.open-meteo.com/v1/forecast?latitude=34.95&longitude=137.16&current=temperature_2m%2Crelative_humidity_2m%2Cweather_code%2Csunshine_duration&timezone=Asia%2FTokyo
+POST payload: {
+  "weather": "àÍïîì‹ÇË",
+  "temperature_c": 25.4,
+  "humidity_pct": 63,
+  "sunlight_hours": 0.0,
+  "note": "auto: open-meteo @ 34.95,137.16"
+}
+OK, created id: 99
+[2026/05/27 11:27:59.78] Finished 
+ 
+[2026/05/27 11:36:28.00] Starting fetch_weather 
+Fetching: https://api.open-meteo.com/v1/forecast?latitude=34.95&longitude=137.16&current=temperature_2m%2Crelative_humidity_2m%2Cweather_code%2Csunshine_duration&timezone=Asia%2FTokyo
+POST payload: {
+  "weather": "ì‹ÇË",
+  "temperature_c": 25.3,
+  "humidity_pct": 63,
+  "sunlight_hours": 0.0,
+  "note": "auto: open-meteo @ 34.95,137.16"
+}
+OK, created id: 100
+[2026/05/27 11:36:30.05] Finished 
+ 
