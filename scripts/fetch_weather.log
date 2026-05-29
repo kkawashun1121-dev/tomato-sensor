@@ -2339,3 +2339,17 @@ Fetching: https://api.open-meteo.com/v1/forecast?latitude=34.95&longitude=137.16
 OK: 追加 0 件 / 更新 31 件 (期間 2026-04-28 ～ 2026-05-28)
 [2026/05/28 16:36:31.58] Finished 
  
+[2026/05/29  3:10:26.71] Starting fetch_weather 
+Fetching: https://api.open-meteo.com/v1/forecast?latitude=34.95&longitude=137.16&daily=weather_code%2Ctemperature_2m_mean%2Csunshine_duration&past_days=30&forecast_days=1&timezone=Asia%2FTokyo
+OK: 追加 1 件 / 更新 30 件 (期間 2026-04-29 ～ 2026-05-29)
+[2026/05/29  3:10:31.68] Finished 
+ 
+[2026/05/29  3:14:44.06] Starting fetch_weather 
+Fetching: https://api.open-meteo.com/v1/forecast?latitude=34.95&longitude=137.16&daily=weather_code%2Ctemperature_2m_mean%2Csunshine_duration&past_days=30&forecast_days=1&timezone=Asia%2FTokyo
+OK: 追加 0 件 / 更新 31 件 (期間 2026-04-29 ～ 2026-05-29)
+[2026/05/29  3:14:48.15] Finished 
+ 
+[2026/05/29  4:46:25.46] Starting fetch_weather 
+ERROR: 既存データ取得に失敗: timed out
+[2026/05/29  4:47:11.88] Finished 
+ 
