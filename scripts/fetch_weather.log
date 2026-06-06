@@ -2618,3 +2618,165 @@ Fetching: https://api.open-meteo.com/v1/forecast?latitude=34.95&longitude=137.16
 OK: 追加 0 件 / 更新 31 件 (期間 2026-05-04 ～ 2026-06-03)
 [2026/06/03 18:46:14.99] Finished 
  
+[2026/06/04 11:30:39.35] Starting fetch_weather 
+Fetching: https://api.open-meteo.com/v1/forecast?latitude=34.95&longitude=137.16&daily=weather_code%2Ctemperature_2m_mean%2Csunshine_duration&past_days=30&forecast_days=1&timezone=Asia%2FTokyo
+OK: 追加 1 件 / 更新 30 件 (期間 2026-05-05 ～ 2026-06-04)
+[2026/06/04 11:30:47.67] Finished 
+ 
+[2026/06/04 11:31:06.91] Starting fetch_weather 
+Fetching: https://api.open-meteo.com/v1/forecast?latitude=34.95&longitude=137.16&daily=weather_code%2Ctemperature_2m_mean%2Csunshine_duration&past_days=30&forecast_days=1&timezone=Asia%2FTokyo
+OK: 追加 0 件 / 更新 31 件 (期間 2026-05-05 ～ 2026-06-04)
+[2026/06/04 11:31:09.39] Finished 
+ 
+[2026/06/04 11:36:28.41] Starting fetch_weather 
+Fetching: https://api.open-meteo.com/v1/forecast?latitude=34.95&longitude=137.16&daily=weather_code%2Ctemperature_2m_mean%2Csunshine_duration&past_days=30&forecast_days=1&timezone=Asia%2FTokyo
+OK: 追加 0 件 / 更新 31 件 (期間 2026-05-05 ～ 2026-06-04)
+[2026/06/04 11:36:31.79] Finished 
+ 
+[2026/06/04 11:46:11.05] Starting fetch_weather 
+Fetching: https://api.open-meteo.com/v1/forecast?latitude=34.95&longitude=137.16&daily=weather_code%2Ctemperature_2m_mean%2Csunshine_duration&past_days=30&forecast_days=1&timezone=Asia%2FTokyo
+OK: 追加 0 件 / 更新 31 件 (期間 2026-05-05 ～ 2026-06-04)
+[2026/06/04 11:46:15.26] Finished 
+ 
+[2026/06/04 12:31:07.34] Starting fetch_weather 
+Fetching: https://api.open-meteo.com/v1/forecast?latitude=34.95&longitude=137.16&daily=weather_code%2Ctemperature_2m_mean%2Csunshine_duration&past_days=30&forecast_days=1&timezone=Asia%2FTokyo
+OK: 追加 0 件 / 更新 31 件 (期間 2026-05-05 ～ 2026-06-04)
+[2026/06/04 12:31:11.89] Finished 
+ 
+[2026/06/04 12:36:28.40] Starting fetch_weather 
+Fetching: https://api.open-meteo.com/v1/forecast?latitude=34.95&longitude=137.16&daily=weather_code%2Ctemperature_2m_mean%2Csunshine_duration&past_days=30&forecast_days=1&timezone=Asia%2FTokyo
+OK: 追加 0 件 / 更新 31 件 (期間 2026-05-05 ～ 2026-06-04)
+[2026/06/04 12:36:31.75] Finished 
+ 
+[2026/06/04 12:46:10.99] Starting fetch_weather 
+Fetching: https://api.open-meteo.com/v1/forecast?latitude=34.95&longitude=137.16&daily=weather_code%2Ctemperature_2m_mean%2Csunshine_duration&past_days=30&forecast_days=1&timezone=Asia%2FTokyo
+OK: 追加 0 件 / 更新 31 件 (期間 2026-05-05 ～ 2026-06-04)
+[2026/06/04 12:46:14.86] Finished 
+ 
+[2026/06/04 14:39:20.64] Starting fetch_weather 
+Fetching: https://api.open-meteo.com/v1/forecast?latitude=34.95&longitude=137.16&daily=weather_code%2Ctemperature_2m_mean%2Csunshine_duration&past_days=30&forecast_days=1&timezone=Asia%2FTokyo
+OK: 追加 0 件 / 更新 31 件 (期間 2026-05-05 ～ 2026-06-04)
+[2026/06/04 14:39:24.47] Finished 
+ 
+[2026/06/04 14:46:11.03] Starting fetch_weather 
+Fetching: https://api.open-meteo.com/v1/forecast?latitude=34.95&longitude=137.16&daily=weather_code%2Ctemperature_2m_mean%2Csunshine_duration&past_days=30&forecast_days=1&timezone=Asia%2FTokyo
+OK: 追加 0 件 / 更新 31 件 (期間 2026-05-05 ～ 2026-06-04)
+[2026/06/04 14:46:14.42] Finished 
+ 
+[2026/06/04 15:31:06.99] Starting fetch_weather 
+Fetching: https://api.open-meteo.com/v1/forecast?latitude=34.95&longitude=137.16&daily=weather_code%2Ctemperature_2m_mean%2Csunshine_duration&past_days=30&forecast_days=1&timezone=Asia%2FTokyo
+OK: 追加 0 件 / 更新 31 件 (期間 2026-05-05 ～ 2026-06-04)
+[2026/06/04 15:31:11.93] Finished 
+ 
+[2026/06/04 15:36:28.39] Starting fetch_weather 
+Fetching: https://api.open-meteo.com/v1/forecast?latitude=34.95&longitude=137.16&daily=weather_code%2Ctemperature_2m_mean%2Csunshine_duration&past_days=30&forecast_days=1&timezone=Asia%2FTokyo
+OK: 追加 0 件 / 更新 31 件 (期間 2026-05-05 ～ 2026-06-04)
+[2026/06/04 15:36:31.73] Finished 
+ 
+[2026/06/04 15:46:11.08] Starting fetch_weather 
+Fetching: https://api.open-meteo.com/v1/forecast?latitude=34.95&longitude=137.16&daily=weather_code%2Ctemperature_2m_mean%2Csunshine_duration&past_days=30&forecast_days=1&timezone=Asia%2FTokyo
+OK: 追加 0 件 / 更新 31 件 (期間 2026-05-05 ～ 2026-06-04)
+[2026/06/04 15:46:14.04] Finished 
+ 
+[2026/06/04 16:31:07.11] Starting fetch_weather 
+Fetching: https://api.open-meteo.com/v1/forecast?latitude=34.95&longitude=137.16&daily=weather_code%2Ctemperature_2m_mean%2Csunshine_duration&past_days=30&forecast_days=1&timezone=Asia%2FTokyo
+OK: 追加 0 件 / 更新 31 件 (期間 2026-05-05 ～ 2026-06-04)
+[2026/06/04 16:31:10.82] Finished 
+ 
+[2026/06/05 12:31:33.45] Starting fetch_weather 
+Fetching: https://api.open-meteo.com/v1/forecast?latitude=34.95&longitude=137.16&daily=weather_code%2Ctemperature_2m_mean%2Csunshine_duration&past_days=30&forecast_days=1&timezone=Asia%2FTokyo
+OK: 追加 1 件 / 更新 30 件 (期間 2026-05-06 ～ 2026-06-05)
+[2026/06/05 12:31:37.71] Finished 
+ 
+[2026/06/05 12:36:28.43] Starting fetch_weather 
+Fetching: https://api.open-meteo.com/v1/forecast?latitude=34.95&longitude=137.16&daily=weather_code%2Ctemperature_2m_mean%2Csunshine_duration&past_days=30&forecast_days=1&timezone=Asia%2FTokyo
+OK: 追加 0 件 / 更新 31 件 (期間 2026-05-06 ～ 2026-06-05)
+[2026/06/05 12:36:31.69] Finished 
+ 
+[2026/06/05 12:46:11.11] Starting fetch_weather 
+Fetching: https://api.open-meteo.com/v1/forecast?latitude=34.95&longitude=137.16&daily=weather_code%2Ctemperature_2m_mean%2Csunshine_duration&past_days=30&forecast_days=1&timezone=Asia%2FTokyo
+OK: 追加 0 件 / 更新 31 件 (期間 2026-05-06 ～ 2026-06-05)
+[2026/06/05 12:46:15.21] Finished 
+ 
+[2026/06/05 19:14:51.51] Starting fetch_weather 
+Fetching: https://api.open-meteo.com/v1/forecast?latitude=34.95&longitude=137.16&daily=weather_code%2Ctemperature_2m_mean%2Csunshine_duration&past_days=30&forecast_days=1&timezone=Asia%2FTokyo
+OK: 追加 0 件 / 更新 31 件 (期間 2026-05-06 ～ 2026-06-05)
+[2026/06/05 19:14:59.73] Finished 
+ 
+[2026/06/05 19:31:07.10] Starting fetch_weather 
+Fetching: https://api.open-meteo.com/v1/forecast?latitude=34.95&longitude=137.16&daily=weather_code%2Ctemperature_2m_mean%2Csunshine_duration&past_days=30&forecast_days=1&timezone=Asia%2FTokyo
+OK: 追加 0 件 / 更新 31 件 (期間 2026-05-06 ～ 2026-06-05)
+[2026/06/05 19:31:10.78] Finished 
+ 
+[2026/06/05 19:31:34.00] Starting fetch_weather 
+Fetching: https://api.open-meteo.com/v1/forecast?latitude=34.95&longitude=137.16&daily=weather_code%2Ctemperature_2m_mean%2Csunshine_duration&past_days=30&forecast_days=1&timezone=Asia%2FTokyo
+OK: 追加 0 件 / 更新 31 件 (期間 2026-05-06 ～ 2026-06-05)
+[2026/06/05 19:31:38.37] Finished 
+ 
+[2026/06/05 19:36:28.47] Starting fetch_weather 
+Fetching: https://api.open-meteo.com/v1/forecast?latitude=34.95&longitude=137.16&daily=weather_code%2Ctemperature_2m_mean%2Csunshine_duration&past_days=30&forecast_days=1&timezone=Asia%2FTokyo
+OK: 追加 0 件 / 更新 31 件 (期間 2026-05-06 ～ 2026-06-05)
+[2026/06/05 19:36:32.61] Finished 
+ 
+[2026/06/05 19:46:11.11] Starting fetch_weather 
+Fetching: https://api.open-meteo.com/v1/forecast?latitude=34.95&longitude=137.16&daily=weather_code%2Ctemperature_2m_mean%2Csunshine_duration&past_days=30&forecast_days=1&timezone=Asia%2FTokyo
+OK: 追加 0 件 / 更新 31 件 (期間 2026-05-06 ～ 2026-06-05)
+[2026/06/05 19:46:15.89] Finished 
+ 
+[2026/06/06 11:30:48.49] Starting fetch_weather 
+Fetching: https://api.open-meteo.com/v1/forecast?latitude=34.95&longitude=137.16&daily=weather_code%2Ctemperature_2m_mean%2Csunshine_duration&past_days=30&forecast_days=1&timezone=Asia%2FTokyo
+OK: 追加 1 件 / 更新 30 件 (期間 2026-05-07 ～ 2026-06-06)
+[2026/06/06 11:30:52.72] Finished 
+ 
+[2026/06/06 11:31:07.07] Starting fetch_weather 
+Fetching: https://api.open-meteo.com/v1/forecast?latitude=34.95&longitude=137.16&daily=weather_code%2Ctemperature_2m_mean%2Csunshine_duration&past_days=30&forecast_days=1&timezone=Asia%2FTokyo
+OK: 追加 0 件 / 更新 31 件 (期間 2026-05-07 ～ 2026-06-06)
+[2026/06/06 11:31:10.16] Finished 
+ 
+[2026/06/06 11:31:33.89] Starting fetch_weather 
+Fetching: https://api.open-meteo.com/v1/forecast?latitude=34.95&longitude=137.16&daily=weather_code%2Ctemperature_2m_mean%2Csunshine_duration&past_days=30&forecast_days=1&timezone=Asia%2FTokyo
+OK: 追加 0 件 / 更新 31 件 (期間 2026-05-07 ～ 2026-06-06)
+[2026/06/06 11:31:47.17] Finished 
+ 
+[2026/06/06 12:11:54.32] Starting fetch_weather 
+Fetching: https://api.open-meteo.com/v1/forecast?latitude=34.95&longitude=137.16&daily=weather_code%2Ctemperature_2m_mean%2Csunshine_duration&past_days=30&forecast_days=1&timezone=Asia%2FTokyo
+Traceback (most recent call last):
+  File "C:\project\tomato-sensor\scripts\fetch_weather.py", line 157, in <module>
+    main()
+    ~~~~^^
+  File "C:\project\tomato-sensor\scripts\fetch_weather.py", line 145, in main
+    delete_environment(daily_by_date[d])
+    ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "C:\project\tomato-sensor\scripts\fetch_weather.py", line 80, in delete_environment
+    urllib.request.urlopen(req, timeout=15).read()
+    ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\Kkawa\AppData\Local\Programs\Python\Python314\Lib\urllib\request.py", line 187, in urlopen
+    return opener.open(url, data, timeout)
+           ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Kkawa\AppData\Local\Programs\Python\Python314\Lib\urllib\request.py", line 487, in open
+    response = self._open(req, data)
+  File "C:\Users\Kkawa\AppData\Local\Programs\Python\Python314\Lib\urllib\request.py", line 504, in _open
+    result = self._call_chain(self.handle_open, protocol, protocol +
+                              '_open', req)
+  File "C:\Users\Kkawa\AppData\Local\Programs\Python\Python314\Lib\urllib\request.py", line 464, in _call_chain
+    result = func(*args)
+  File "C:\Users\Kkawa\AppData\Local\Programs\Python\Python314\Lib\urllib\request.py", line 1350, in http_open
+    return self.do_open(http.client.HTTPConnection, req)
+           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Kkawa\AppData\Local\Programs\Python\Python314\Lib\urllib\request.py", line 1325, in do_open
+    r = h.getresponse()
+  File "C:\Users\Kkawa\AppData\Local\Programs\Python\Python314\Lib\http\client.py", line 1450, in getresponse
+    response.begin()
+    ~~~~~~~~~~~~~~^^
+  File "C:\Users\Kkawa\AppData\Local\Programs\Python\Python314\Lib\http\client.py", line 336, in begin
+    version, status, reason = self._read_status()
+                              ~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Kkawa\AppData\Local\Programs\Python\Python314\Lib\http\client.py", line 297, in _read_status
+    line = str(self.fp.readline(_MAXLINE + 1), "iso-8859-1")
+               ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+  File "C:\Users\Kkawa\AppData\Local\Programs\Python\Python314\Lib\socket.py", line 725, in readinto
+    return self._sock.recv_into(b)
+           ~~~~~~~~~~~~~~~~~~~~^^^
+TimeoutError: timed out
+[2026/06/06 12:12:13.20] Finished 
+ 
