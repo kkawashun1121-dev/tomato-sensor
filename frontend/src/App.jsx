@@ -8,6 +8,7 @@ import PlantManager from './components/PlantManager'
 import ImageGallery from './components/ImageGallery'
 import FruitManager from './components/FruitManager'
 import MeasurementPanel from './components/MeasurementPanel'
+import PlantDiagramEditor from './components/PlantDiagramEditor'
 
 
 const PERIODS = [
@@ -36,6 +37,7 @@ function App() {
       <EnvironmentPanel />
       <PlantManager />
       <FruitManager />
+      <PlantDiagramEditor />
       <ImageGallery/>
 
       <div style={{ marginBottom: 16 }}>
