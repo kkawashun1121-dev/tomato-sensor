@@ -189,3 +189,40 @@ class ImageOut(BaseModel):
     taken_at: Optional[datetime]
     uploaded_at: datetime
     model_config = ConfigDict(from_attributes=True)
+
+
+# ── 植物図エディタ
+
+class PlantDiagramCreate(BaseModel):
+    name: str = Field(..., max_length=64)
+    plant_type_key: str = Field(..., max_length=64)
+    plant_id: Optional[int] = Field(None, ge=1)
+    diagram_json: str = Field(default='{"nodes":[],"edges":[]}')
+
+class PlantDiagramUpdate(BaseModel):
+    name: Optional[str] = Field(None, max_length=64)
+    plant_type_key: Optional[str] = Field(None, max_length=64)
+    plant_id: Optional[int] = Field(None, ge=1)
+    diagram_json: Optional[str] = None
+
+class PlantDiagramOut(BaseModel):
+    id: int
+    name: str
+    plant_type_key: str
+    plant_id: Optional[int]
+    diagram_json: str
+    created_at: datetime
+    updated_at: datetime
+    model_config = ConfigDict(from_attributes=True)
+
+class PlantDiagramTypeCreate(BaseModel):
+    key: str = Field(..., max_length=64)
+    name: str = Field(..., max_length=64)
+    color: str = Field(..., max_length=16)
+
+class PlantDiagramTypeOut(BaseModel):
+    id: int
+    key: str
+    name: str
+    color: str
+    model_config = ConfigDict(from_attributes=True)
