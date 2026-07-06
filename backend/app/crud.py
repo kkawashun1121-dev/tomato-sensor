@@ -338,3 +338,60 @@ def delete_image(db: Session, image_id: int) -> tuple[bool, str | None]:
     db.delete(row)
     db.commit()
     return True, filename
+
+
+# ============ PlantDiagram (植物図エディタ) ============
+
+def list_plant_diagrams(db: Session) -> list[models.PlantDiagram]:
+    return db.execute(select(models.PlantDiagram).order_by(models.PlantDiagram.id)).scalars().all()
+
+def get_plant_diagram(db: Session, diagram_id: int) -> models.PlantDiagram | None:
+    return db.get(models.PlantDiagram, diagram_id)
+
+def create_plant_diagram(
+    db: Session, name: str, plant_type_key: str, diagram_json: str,
+    plant_id: int | None = None
+) -> models.PlantDiagram:
+    row = models.PlantDiagram(
+        name=name, plant_type_key=plant_type_key,
+        plant_id=plant_id, diagram_json=diagram_json
+    )
+    db.add(row); db.commit(); db.refresh(row)
+    return row
+
+def update_plant_diagram(db: Session, diagram_id: int, **kwargs) -> models.PlantDiagram | None:
+    row = db.get(models.PlantDiagram, diagram_id)
+    if row is None:
+        return None
+    for k, v in kwargs.items():
+        setattr(row, k, v)   # None も許可（plant_id を外すケースのため）
+    db.commit(); db.refresh(row)
+    return row
+
+def delete_plant_diagram(db: Session, diagram_id: int) -> bool:
+    row = db.get(models.PlantDiagram, diagram_id)
+    if row is None:
+        return False
+    db.delete(row); db.commit()
+    return True
+
+
+# ============ PlantDiagramType (カスタム植物種類) ============
+
+def list_plant_diagram_types(db: Session) -> list[models.PlantDiagramType]:
+    return db.execute(select(models.PlantDiagramType).order_by(models.PlantDiagramType.id)).scalars().all()
+
+def create_plant_diagram_type(db: Session, key: str, name: str, color: str) -> models.PlantDiagramType | None:
+    existing = db.execute(select(models.PlantDiagramType).where(models.PlantDiagramType.key == key)).scalar_one_or_none()
+    if existing:
+        return None  # キー重複
+    row = models.PlantDiagramType(key=key, name=name, color=color)
+    db.add(row); db.commit(); db.refresh(row)
+    return row
+
+def delete_plant_diagram_type(db: Session, key: str) -> bool:
+    row = db.execute(select(models.PlantDiagramType).where(models.PlantDiagramType.key == key)).scalar_one_or_none()
+    if row is None:
+        return False
+    db.delete(row); db.commit()
+    return True
