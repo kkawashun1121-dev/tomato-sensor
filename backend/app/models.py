@@ -1,6 +1,6 @@
 """SQLAlchemy ORM モデル"""
 from datetime import datetime
-from sqlalchemy import String, Integer, Float, DateTime, func,Date
+from sqlalchemy import String, Integer, Float, DateTime, func, Date, Text
 from sqlalchemy.orm import Mapped, mapped_column
 from .database import Base
 from sqlalchemy import ForeignKey
@@ -124,3 +124,32 @@ class Image(Base):
     uploaded_at: Mapped[datetime] = mapped_column(
         DateTime(timezone=True), nullable=False, server_default=func.now()
     )
+
+
+
+
+# plant_diagrams / plant_diagram_types
+class PlantDiagram(Base):
+    __tablename__ = "plant_diagrams"
+    id: Mapped[int] = mapped_column(Integer, primary_key=True, autoincrement=True)
+    name: Mapped[str] = mapped_column(String(64), nullable=False)
+    plant_type_key: Mapped[str] = mapped_column(String(64), nullable=False, default="tomato")
+    plant_id: Mapped[int | None] = mapped_column(
+        ForeignKey("plants.id", ondelete="SET NULL"), nullable=True
+    )
+    diagram_json: Mapped[str] = mapped_column(Text, nullable=False, default='{"nodes":[],"edges":[]}')
+    created_at: Mapped[datetime] = mapped_column(
+        DateTime(timezone=True), nullable=False, server_default=func.now()
+    )
+    updated_at: Mapped[datetime] = mapped_column(
+        DateTime(timezone=True), nullable=False,
+        server_default=func.now(), onupdate=func.now()
+    )
+
+
+class PlantDiagramType(Base):
+    __tablename__ = "plant_diagram_types"
+    id: Mapped[int] = mapped_column(Integer, primary_key=True, autoincrement=True)
+    key: Mapped[str] = mapped_column(String(64), nullable=False, unique=True)
+    name: Mapped[str] = mapped_column(String(64), nullable=False)
+    color: Mapped[str] = mapped_column(String(16), nullable=False)
